@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Sagittaras.CDK.Framework.IAM\Sagittaras.CDK.Framework.IAM.csproj" />
+      <ProjectReference Include="..\Sagittaras.CDK.Framework\Sagittaras.CDK.Framework.csproj" />
+    </ItemGroup>
+
+</Project>

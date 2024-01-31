@@ -13,6 +13,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub Workflows", "GitHub 
 		.github\workflows\dotnet-format.yml = .github\workflows\dotnet-format.yml
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework", "Sagittaras.CDK.Framework\Sagittaras.CDK.Framework.csproj", "{940EEEA3-A068-4793-A44A-D2FCE1143E49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.Amplify", "Sagittaras.CDK.Framework.Amplify\Sagittaras.CDK.Framework.Amplify.csproj", "{A1368905-355A-41AA-B1F7-64F85D5B8C1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.CodeArtifact", "Sagittaras.CDK.Framework.CodeArtifact\Sagittaras.CDK.Framework.CodeArtifact.csproj", "{66930C02-3DF6-45B4-83F7-DB1F0082D02B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.CodeBuild", "Sagittaras.CDK.Framework.CodeBuild\Sagittaras.CDK.Framework.CodeBuild.csproj", "{28EE486A-B86C-412F-9B6A-66B0CEB4EA68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.CodePipeline", "Sagittaras.CDK.Framework.CodePipeline\Sagittaras.CDK.Framework.CodePipeline.csproj", "{61F8F5CD-30FF-4019-AE9D-E1AD0DA55029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.IAM", "Sagittaras.CDK.Framework.IAM\Sagittaras.CDK.Framework.IAM.csproj", "{272BA799-3674-4104-8E01-511E9EDA0198}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.Route53", "Sagittaras.CDK.Framework.Route53\Sagittaras.CDK.Framework.Route53.csproj", "{C8F37959-BCB7-43DC-9812-A5623E420923}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +34,35 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D64BE009-9FBF-4482-AE0E-38C7B29479C4} = {E0FC76FC-9347-4308-A0D1-A9E640C145E3}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1368905-355A-41AA-B1F7-64F85D5B8C1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1368905-355A-41AA-B1F7-64F85D5B8C1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1368905-355A-41AA-B1F7-64F85D5B8C1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1368905-355A-41AA-B1F7-64F85D5B8C1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66930C02-3DF6-45B4-83F7-DB1F0082D02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66930C02-3DF6-45B4-83F7-DB1F0082D02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66930C02-3DF6-45B4-83F7-DB1F0082D02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66930C02-3DF6-45B4-83F7-DB1F0082D02B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28EE486A-B86C-412F-9B6A-66B0CEB4EA68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28EE486A-B86C-412F-9B6A-66B0CEB4EA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28EE486A-B86C-412F-9B6A-66B0CEB4EA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28EE486A-B86C-412F-9B6A-66B0CEB4EA68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61F8F5CD-30FF-4019-AE9D-E1AD0DA55029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61F8F5CD-30FF-4019-AE9D-E1AD0DA55029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61F8F5CD-30FF-4019-AE9D-E1AD0DA55029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61F8F5CD-30FF-4019-AE9D-E1AD0DA55029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272BA799-3674-4104-8E01-511E9EDA0198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272BA799-3674-4104-8E01-511E9EDA0198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272BA799-3674-4104-8E01-511E9EDA0198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272BA799-3674-4104-8E01-511E9EDA0198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8F37959-BCB7-43DC-9812-A5623E420923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8F37959-BCB7-43DC-9812-A5623E420923}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8F37959-BCB7-43DC-9812-A5623E420923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8F37959-BCB7-43DC-9812-A5623E420923}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

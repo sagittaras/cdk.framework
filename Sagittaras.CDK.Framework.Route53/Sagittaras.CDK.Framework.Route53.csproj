@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Sagittaras.CDK.Framework\Sagittaras.CDK.Framework.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="PublicHostedZoneFactory.DnsSec.cs">
+        <DependentUpon>PublicHostedZoneFactory.cs</DependentUpon>
+      </Compile>
+      <Compile Update="PublicHostedZoneFactory.Records.cs">
+        <DependentUpon>PublicHostedZoneFactory.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>
