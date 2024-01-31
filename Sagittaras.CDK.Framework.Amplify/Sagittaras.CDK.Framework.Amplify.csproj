@@ -4,6 +4,13 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Amplify CDK Framework</Title>
+        <Authors>Sagittaras Games</Authors>
+        <Description>Amplify framework for building applications with CDK.</Description>
+        <PackageProjectUrl>https://github.com/sagittaras/cdk.framework</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/sagittaras/cdk.framework/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/sagittaras/cdk.framework</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
