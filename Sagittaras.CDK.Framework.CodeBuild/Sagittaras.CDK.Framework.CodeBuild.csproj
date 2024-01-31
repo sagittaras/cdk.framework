@@ -11,6 +11,7 @@
         <PackageProjectUrl>https://github.com/sagittaras/cdk.framework</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/sagittaras/cdk.framework/blob/main/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/sagittaras/cdk.framework</RepositoryUrl>
+        <Version>1.0.0-preview.01</Version>
     </PropertyGroup>
 
     <ItemGroup>
