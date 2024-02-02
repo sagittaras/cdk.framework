@@ -40,19 +40,15 @@ public class BuildSpecFactory : IBuildSpecFactory
     }
 
     /// <inheritdoc />
-    public BuildSpec ToBuildSpec()
+    public BuildSpec ToBuildSpecYaml()
     {
-        Dictionary<string, object> buildSpec = new()
-        {
-            { "version", _version }
-        };
+        return BuildSpec.FromObjectToYaml(ToDictionary());
+    }
 
-        foreach (IBuildSpecSection section in _sections.Values)
-        {
-            buildSpec.Add(section.SectionName, section.ToDictionary());
-        }
-
-        return BuildSpec.FromObjectToYaml(buildSpec);
+    /// <inheritdoc />
+    public BuildSpec ToBuildSpecJson()
+    {
+        return BuildSpec.FromObject(ToDictionary());
     }
 
     /// <inheritdoc />
@@ -106,5 +102,24 @@ public class BuildSpecFactory : IBuildSpecFactory
         }
 
         return default;
+    }
+
+    /// <summary>
+    /// Converts the factory definitions to a dictionary.
+    /// </summary>
+    /// <returns></returns>
+    private IDictionary<string, object> ToDictionary()
+    {
+        Dictionary<string, object> buildSpec = new()
+        {
+            { "version", _version }
+        };
+
+        foreach (IBuildSpecSection section in _sections.Values)
+        {
+            buildSpec.Add(section.SectionName, section.ToDictionary());
+        }
+
+        return buildSpec;
     }
 }

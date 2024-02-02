@@ -41,10 +41,16 @@ public interface IBuildSpecFactory
     IBuildSpecFactory Version(double version);
 
     /// <summary>
-    /// Converts the factory to a BuildSpec object.
+    /// Converts the factory to a BuildSpec object using YAML.
     /// </summary>
     /// <returns></returns>
-    BuildSpec ToBuildSpec();
+    BuildSpec ToBuildSpecYaml();
+
+    /// <summary>
+    /// Converts the factory to a BuildSpec object using JSON.
+    /// </summary>
+    /// <returns></returns>
+    BuildSpec ToBuildSpecJson();
 
     /// <summary>
     /// Helps to determine additional policies for the project, required

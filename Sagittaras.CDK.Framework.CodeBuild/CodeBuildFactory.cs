@@ -129,7 +129,7 @@ public class CodeBuildFactory : ConstructFactory<Project, ProjectProps>
         _buildSpecFactory = new TBuildSpecFactory();
         configure?.Invoke((TBuildSpecFactory)_buildSpecFactory);
 
-        Props.BuildSpec = _buildSpecFactory.ToBuildSpec();
+        Props.BuildSpec = _buildSpecFactory.ToBuildSpecYaml();
         return this;
     }
 
@@ -143,7 +143,7 @@ public class CodeBuildFactory : ConstructFactory<Project, ProjectProps>
         where TBuildSpecFactory : IBuildSpecFactory
     {
         _buildSpecFactory = factory;
-        Props.BuildSpec = factory.ToBuildSpec();
+        Props.BuildSpec = factory.ToBuildSpecYaml();
         return this;
     }
 
