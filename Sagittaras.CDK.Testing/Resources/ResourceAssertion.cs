@@ -1,5 +1,6 @@
 using System.Reflection;
 using Amazon.CDK.Assertions;
+using Sagittaras.CDK.Testing.Extensions;
 
 namespace Sagittaras.CDK.Testing.Resources;
 
@@ -46,5 +47,37 @@ public abstract class ResourceAssertion<TProperties> : IResourceAssertion<TPrope
         }
 
         return description;
+    }
+
+    /// <inheritdoc />
+    public void Assert(Template template)
+    {
+        template.Assert(this);
+    }
+
+    /// <summary>
+    /// Access the existing resource properties.
+    /// </summary>
+    /// <remarks>
+    /// If properties are not available, create a new instance.
+    /// </remarks>
+    /// <returns></returns>
+    private TProperties GetResourceProperties()
+    {
+        if (Properties is null)
+        {
+            Properties = new TProperties();
+        }
+
+        return Properties;
+    }
+
+    /// <summary>
+    /// Sets the value of the property by provided action which ensures existing props instance.
+    /// </summary>
+    /// <param name="props"></param>
+    protected void SetProperty(Action<TProperties> props)
+    {
+        props(GetResourceProperties());
     }
 }
