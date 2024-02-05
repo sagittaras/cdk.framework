@@ -1,6 +1,8 @@
 using Amazon.CDK;
 using Amazon.CDK.Assertions;
 using Sagittaras.CDK.Framework.Route53;
+using Sagittaras.CDK.Testing.Extensions;
+using Sagittaras.CDK.Testing.Route53;
 using Xunit;
 
 namespace Sagittaras.CDK.Tests.Route53;
@@ -23,10 +25,12 @@ public class PublicHostedZoneTest : ConstructTest
             .Construct();
 
         Template template = StackTemplate;
-        template.HasResourceProperties("AWS::Route53::HostedZone", new Dictionary<string, object>
+        template.Assert(new HostedZoneAssertion
         {
-            // Name has trailing dot in the CloudFormation template.
-            { "Name", $"{Domain}." }
+            Properties = new HostedZoneProperties
+            {
+                Name = Domain
+            }
         });
         template.ResourceCountIs("AWS::Route53::HostedZone", 1);
         template.ResourceCountIs("AWS::Route53::RecordSet", 0);

@@ -24,6 +24,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Sagittaras.CDK.Framework.Route53\Sagittaras.CDK.Framework.Route53.csproj" />
+      <ProjectReference Include="..\Sagittaras.CDK.Testing.Route53\Sagittaras.CDK.Testing.Route53.csproj" />
       <ProjectReference Include="..\Sagittaras.CDK.Tests\Sagittaras.CDK.Tests.csproj" />
     </ItemGroup>
 
