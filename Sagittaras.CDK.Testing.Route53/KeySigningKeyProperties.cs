@@ -11,4 +11,9 @@ public class KeySigningKeyProperties : ResourceProperties
     /// Current status of the KSK.
     /// </summary>
     public string? Status { get; set; }
+    
+    /// <summary>
+    /// Name of the KSK.
+    /// </summary>
+    public string? Name { get; set; }
 }

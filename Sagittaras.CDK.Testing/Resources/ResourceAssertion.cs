@@ -1,4 +1,5 @@
 using System.Reflection;
+using Amazon.CDK.Assertions;
 
 namespace Sagittaras.CDK.Testing.Resources;
 
@@ -12,7 +13,10 @@ public abstract class ResourceAssertion<TProperties> : IResourceAssertion<TPrope
     public abstract string Type { get; }
 
     /// <inheritdoc />
-    public TProperties Properties { get; set; } = new();
+    public IResourceDependency? DependsOn { get; set; }
+
+    /// <inheritdoc />
+    public TProperties? Properties { get; set; }
 
     /// <summary>
     /// Gets the property members of the derived class.
@@ -20,7 +24,7 @@ public abstract class ResourceAssertion<TProperties> : IResourceAssertion<TPrope
     private IEnumerable<PropertyInfo> PropertyMembers => GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
 
     /// <inheritdoc />
-    public IDictionary<string, object> GetResourceDescription()
+    public IDictionary<string, object> GetResourceDescription(Template template)
     {
         Dictionary<string, object> description = new();
         foreach (PropertyInfo member in PropertyMembers)
@@ -32,6 +36,9 @@ public abstract class ResourceAssertion<TProperties> : IResourceAssertion<TPrope
                     continue;
                 case IResourceProperties properties:
                     value = properties.ToDictionary();
+                    break;
+                case IResourceDependency dependency:
+                    value = dependency.Resolve(template);
                     break;
             }
 

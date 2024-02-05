@@ -3,6 +3,7 @@ using Amazon.CDK.Assertions;
 using Sagittaras.CDK.Framework.Route53;
 using Sagittaras.CDK.Testing.Extensions;
 using Sagittaras.CDK.Testing.KMS;
+using Sagittaras.CDK.Testing.Resources;
 using Sagittaras.CDK.Testing.Route53;
 using Xunit;
 
@@ -63,10 +64,16 @@ public class PublicHostedZoneTest : ConstructTest
                 Status = "ACTIVE"
             }
         });
-
-        template.HasResource("AWS::Route53::DNSSEC", new Dictionary<string, object>
+        template.Assert(new DnsSecAssertion
         {
-            { "DependsOn", new[] { template.FindResources("AWS::Route53::KeySigningKey").First().Key } }
+            DependsOn = new ResourceDependency()
+                .With(new KeySigningKeyAssertion
+                {
+                    Properties = new KeySigningKeyProperties
+                    {
+                        Name = "examplecom"
+                    }
+                })
         });
     }
 }

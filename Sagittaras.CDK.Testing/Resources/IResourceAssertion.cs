@@ -1,3 +1,5 @@
+using Amazon.CDK.Assertions;
+
 namespace Sagittaras.CDK.Testing.Resources;
 
 /// <summary>
@@ -9,12 +11,17 @@ public interface IResourceAssertion
     /// AWS Resource type.
     /// </summary>
     string Type { get; }
+    
+    /// <summary>
+    /// Maps on which resources the current resource depends on.
+    /// </summary>
+    IResourceDependency? DependsOn { get; set; }
 
     /// <summary>
     /// Converts the resource description to a dictionary suitable for template assertion.
     /// </summary>
     /// <returns></returns>
-    IDictionary<string, object> GetResourceDescription();
+    IDictionary<string, object> GetResourceDescription(Template template);
 }
 
 /// <summary>
@@ -27,5 +34,5 @@ public interface IResourceAssertion<TProperties> : IResourceAssertion
     /// <summary>
     /// Properties that helps to identify the resource.
     /// </summary>
-    TProperties Properties { get; set; }
+    TProperties? Properties { get; set; }
 }

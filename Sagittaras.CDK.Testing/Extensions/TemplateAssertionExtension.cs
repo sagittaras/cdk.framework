@@ -17,7 +17,7 @@ public static class TemplateAssertionExtension
     public static void Assert<TResourceAssertion>(this Template template, TResourceAssertion assertion)
         where TResourceAssertion : IResourceAssertion
     {
-        template.HasResource(assertion.Type, assertion.GetResourceDescription());
+        template.HasResource(assertion.Type, assertion.GetResourceDescription(template));
     }
 
     /// <summary>
