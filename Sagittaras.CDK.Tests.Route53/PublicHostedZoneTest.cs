@@ -66,14 +66,7 @@ public class PublicHostedZoneTest : ConstructTest
         });
         template.Assert(new DnsSecAssertion
         {
-            DependsOn = new ResourceDependency()
-                .With(new KeySigningKeyAssertion
-                {
-                    Properties = new KeySigningKeyProperties
-                    {
-                        Name = "examplecom"
-                    }
-                })
+            DependsOn = new DnsSecDependency("examplecom")
         });
     }
 }
