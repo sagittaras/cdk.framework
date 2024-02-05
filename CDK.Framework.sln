@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing.Route53", "Sagittaras.CDK.Testing.Route53\Sagittaras.CDK.Testing.Route53.csproj", "{2C4B4454-A145-405E-85BC-F54B56EAC39B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing.KMS", "Sagittaras.CDK.Testing.KMS\Sagittaras.CDK.Testing.KMS.csproj", "{FF8FB1E8-9071-470E-A4F3-6C0CD27716F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,7 @@ Global
 		{3A01C380-5151-4039-A00C-A33687E00861} = {AEF441A3-E5F9-46D2-82B9-8EE105CC3274}
 		{D753C559-6F75-4493-A5A3-00CD0727A2DC} = {3A01C380-5151-4039-A00C-A33687E00861}
 		{2C4B4454-A145-405E-85BC-F54B56EAC39B} = {3A01C380-5151-4039-A00C-A33687E00861}
+		{FF8FB1E8-9071-470E-A4F3-6C0CD27716F4} = {3A01C380-5151-4039-A00C-A33687E00861}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -112,5 +115,9 @@ Global
 		{2C4B4454-A145-405E-85BC-F54B56EAC39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C4B4454-A145-405E-85BC-F54B56EAC39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C4B4454-A145-405E-85BC-F54B56EAC39B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF8FB1E8-9071-470E-A4F3-6C0CD27716F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF8FB1E8-9071-470E-A4F3-6C0CD27716F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF8FB1E8-9071-470E-A4F3-6C0CD27716F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF8FB1E8-9071-470E-A4F3-6C0CD27716F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

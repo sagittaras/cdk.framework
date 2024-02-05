@@ -2,6 +2,7 @@ using Amazon.CDK;
 using Amazon.CDK.Assertions;
 using Sagittaras.CDK.Framework.Route53;
 using Sagittaras.CDK.Testing.Extensions;
+using Sagittaras.CDK.Testing.KMS;
 using Sagittaras.CDK.Testing.Route53;
 using Xunit;
 
@@ -32,8 +33,8 @@ public class PublicHostedZoneTest : ConstructTest
                 Name = Domain
             }
         });
-        template.ResourceCountIs("AWS::Route53::HostedZone", 1);
-        template.ResourceCountIs("AWS::Route53::RecordSet", 0);
+        template.AssertCount<HostedZoneAssertion>(1);
+        template.AssertCount<RecordSetAssertion>(0);
     }
 
     /// <summary>
@@ -47,15 +48,20 @@ public class PublicHostedZoneTest : ConstructTest
             .Construct();
 
         Template template = StackTemplate;
-        template.ResourceCountIs("AWS::KMS::Key", 1);
-        template.HasResourceProperties("AWS::KMS::Alias", new Dictionary<string, object>
+        template.AssertCount<KeyAssertion>(1);
+        template.Assert(new AliasAssertion
         {
-            { "AliasName", "alias/examplecom-key" }
+            Properties = new AliasProperties
+            {
+                AliasName = "alias/examplecom-key"
+            }
         });
-
-        template.HasResourceProperties("AWS::Route53::KeySigningKey", new Dictionary<string, object>
+        template.Assert(new KeySigningKeyAssertion
         {
-            { "Status", "ACTIVE" }
+            Properties = new KeySigningKeyProperties
+            {
+                Status = "ACTIVE"
+            }
         });
 
         template.HasResource("AWS::Route53::DNSSEC", new Dictionary<string, object>

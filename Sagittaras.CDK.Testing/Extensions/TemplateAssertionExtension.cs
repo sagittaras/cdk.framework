@@ -19,4 +19,16 @@ public static class TemplateAssertionExtension
     {
         template.HasResource(assertion.Type, assertion.GetResourceDescription());
     }
+
+    /// <summary>
+    /// Asserts that the template has a given number of resources of the given type.
+    /// </summary>
+    /// <param name="template"></param>
+    /// <param name="count"></param>
+    /// <typeparam name="TResourceAssertion"></typeparam>
+    public static void AssertCount<TResourceAssertion>(this Template template, int count)
+        where TResourceAssertion : IResourceAssertion, new()
+    {
+        template.ResourceCountIs(new TResourceAssertion().Type, count);
+    }
 }
