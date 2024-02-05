@@ -8,26 +8,10 @@ namespace Sagittaras.CDK.Tests.Route53;
 /// <summary>
 /// Test creation of Public Hosted zone.
 /// </summary>
-public class PublicHostedZoneTest
+public class PublicHostedZoneTest : ConstructTest
 {
     private const string Domain = "example.com";
     private const string Comment = "";
-
-    /// <summary>
-    /// Instance of stack to which the constructs within the test can be assigned.
-    /// </summary>
-    private readonly Stack _stack;
-
-    public PublicHostedZoneTest()
-    {
-        App app = new();
-        _stack = new Stack(app);
-    }
-
-    /// <summary>
-    /// Assertion template for tests from the stack.
-    /// </summary>
-    private Template StackTemplate => Template.FromStack(_stack);
 
     /// <summary>
     /// Tests basic usage of the factory for Hosted Zone.
@@ -35,7 +19,7 @@ public class PublicHostedZoneTest
     [Fact]
     public void Test_BaseFactoryUsage()
     {
-        new PublicHostedZoneFactory(_stack, Domain, Comment)
+        new PublicHostedZoneFactory(Stack, Domain, Comment)
             .Construct();
 
         Template template = StackTemplate;
@@ -54,7 +38,7 @@ public class PublicHostedZoneTest
     [Fact]
     public void Test_DNSSEC()
     {
-        new PublicHostedZoneFactory(_stack, Domain, Comment)
+        new PublicHostedZoneFactory(Stack, Domain, Comment)
             .WithDnsSec()
             .Construct();
 
