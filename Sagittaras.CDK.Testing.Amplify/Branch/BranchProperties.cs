@@ -1,6 +1,6 @@
 using Sagittaras.CDK.Testing.Resources;
 
-namespace Sagittaras.CDK.Testing.Amplify;
+namespace Sagittaras.CDK.Testing.Amplify.Branch;
 
 /// <summary>
 /// Properties of AWS::Amplify::Branch.

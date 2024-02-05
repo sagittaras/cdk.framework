@@ -22,6 +22,12 @@ public interface IResourceAssertion
     /// </summary>
     /// <returns></returns>
     IDictionary<string, object> GetResourceDescription(Template template);
+
+    /// <summary>
+    /// Executes the assertion against the target template.
+    /// </summary>
+    /// <param name="template">Instance of template.</param>
+    void Assert(Template template);
 }
 
 /// <summary>

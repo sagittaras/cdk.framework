@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Reflection;
 
 namespace Sagittaras.CDK.Testing.Resources;
@@ -22,12 +23,21 @@ public abstract class ResourceProperties : IResourceProperties
         foreach (PropertyInfo property in Properties)
         {
             object? value = property.GetValue(this);
-            if (value is null)
+            switch (value)
             {
-                continue;
+                case null:
+                    continue;
+                case IResourceProperties resourceProperties:
+                    dict[property.Name] = resourceProperties.ToDictionary();
+                    break;
+                case IEnumerable<IResourceProperties> propsCollection:
+                    // Without cast, it's causing a JSII error, because in reflection is marked as interface.
+                    dict[property.Name] = propsCollection.Select(x => x.ToDictionary() as Dictionary<string, object>).ToArray();
+                    break;
+                default:
+                    dict[property.Name] = value;
+                    break;
             }
-
-            dict[property.Name] = value;
         }
 
         return dict;
