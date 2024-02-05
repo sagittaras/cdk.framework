@@ -7,5 +7,5 @@ namespace Sagittaras.CDK.Testing.Route53;
 /// </summary>
 public class RecordSetProperties : ResourceProperties
 {
-    
+
 }

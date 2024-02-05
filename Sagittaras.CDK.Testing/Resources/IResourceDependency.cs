@@ -15,7 +15,7 @@ public interface IResourceDependency
     /// <returns></returns>
     IResourceDependency With<TResourceAssertion>(TResourceAssertion assertion)
         where TResourceAssertion : IResourceAssertion;
-    
+
     /// <summary>
     /// Resolves the dependencies from the given template.
     /// </summary>

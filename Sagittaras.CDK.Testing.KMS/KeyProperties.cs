@@ -7,5 +7,5 @@ namespace Sagittaras.CDK.Testing.KMS;
 /// </summary>
 public class KeyProperties : ResourceProperties
 {
-    
+
 }

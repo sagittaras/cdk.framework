@@ -11,7 +11,7 @@ public interface IResourceAssertion
     /// AWS Resource type.
     /// </summary>
     string Type { get; }
-    
+
     /// <summary>
     /// Maps on which resources the current resource depends on.
     /// </summary>

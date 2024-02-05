@@ -27,7 +27,7 @@ public class ResourceDependency : IResourceDependency
         {
             IEnumerable<string> resolvedIds = template.FindResources(assertion.Type, assertion.GetResourceDescription(template))
                 .Select(x => x.Key);
-            
+
             resolved.AddRange(resolvedIds);
         }
 
