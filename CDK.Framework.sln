@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Core", "1. Core", "{753E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. CDK Modules", "2. CDK Modules", "{506BD5FC-1E9D-47D4-A609-F977EDF69184}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F2C4D978-97A6-4451-AAD2-16EDCA158D97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
