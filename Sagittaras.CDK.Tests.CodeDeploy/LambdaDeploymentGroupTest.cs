@@ -28,7 +28,6 @@ public class LambdaDeploymentGroupTest : ConstructTest
     public void Test_BaseConstruct()
     {
         new LambdaDeploymentGroupFactory(Stack, GroupName, LambdaFunction)
-            .PartOf("MyApplication")
             .Construct();
 
         Template template = StackTemplate;
@@ -45,7 +44,6 @@ public class LambdaDeploymentGroupTest : ConstructTest
     public void Test_BetterDeployment()
     {
         new LambdaDeploymentGroupFactory(Stack, GroupName, LambdaFunction)
-            .PartOf("MyApplication")
             .WithDeploymentConfig(LambdaDeploymentConfig.CANARY_10PERCENT_30MINUTES)
             .AddAlarmsByLookup("Alarm1", "Alarm2", "Alarm3")
             .Construct();

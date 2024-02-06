@@ -19,7 +19,7 @@ public class LambdaDeploymentGroupFactory : DeploymentGroupFactory<LambdaDeploym
             })
         };
     }
-    
+
     /// <inheritdoc />
     public override LambdaDeploymentGroupProps Props { get; }
 
