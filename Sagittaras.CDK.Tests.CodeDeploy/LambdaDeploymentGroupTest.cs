@@ -7,6 +7,7 @@ using Xunit;
 
 namespace Sagittaras.CDK.Tests.CodeDeploy;
 
+[Collection("Sequential")]
 public class LambdaDeploymentGroupTest : ConstructTest
 {
     private const string GroupName = "Staging";

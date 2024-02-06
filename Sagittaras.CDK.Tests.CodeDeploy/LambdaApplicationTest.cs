@@ -6,6 +6,7 @@ using Xunit;
 
 namespace Sagittaras.CDK.Tests.CodeDeploy;
 
+[Collection("Sequential")]
 public class LambdaApplicationTest : ConstructTest
 {
     private const string ApplicationName = "LambdaTest";

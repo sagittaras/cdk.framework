@@ -15,6 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Sagittaras.CDK.Framework.CodeDeploy\Sagittaras.CDK.Framework.CodeDeploy.csproj"/>
       <ProjectReference Include="..\Sagittaras.CDK.Framework\Sagittaras.CDK.Framework.csproj" />
     </ItemGroup>
 
