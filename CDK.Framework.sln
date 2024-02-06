@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing.Lamb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Tests.Lambda", "Sagittaras.CDK.Tests.Lambda\Sagittaras.CDK.Tests.Lambda.csproj", "{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.CodeDeploy", "Sagittaras.CDK.Framework.CodeDeploy\Sagittaras.CDK.Framework.CodeDeploy.csproj", "{A3EB3178-E99C-43DA-AAD8-B0DB3854F234}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +95,7 @@ Global
 		{62A39295-39AA-4D7A-B9DA-49E41FF7748B} = {506BD5FC-1E9D-47D4-A609-F977EDF69184}
 		{126FDC69-6A66-482C-8300-21BA741C85CF} = {3A01C380-5151-4039-A00C-A33687E00861}
 		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3} = {F2C4D978-97A6-4451-AAD2-16EDCA158D97}
+		{A3EB3178-E99C-43DA-AAD8-B0DB3854F234} = {506BD5FC-1E9D-47D4-A609-F977EDF69184}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -175,5 +178,9 @@ Global
 		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3EB3178-E99C-43DA-AAD8-B0DB3854F234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3EB3178-E99C-43DA-AAD8-B0DB3854F234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3EB3178-E99C-43DA-AAD8-B0DB3854F234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3EB3178-E99C-43DA-AAD8-B0DB3854F234}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
