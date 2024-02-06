@@ -59,6 +59,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing.Code
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Framework.Lambda", "Sagittaras.CDK.Framework.Lambda\Sagittaras.CDK.Framework.Lambda.csproj", "{62A39295-39AA-4D7A-B9DA-49E41FF7748B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing.Lambda", "Sagittaras.CDK.Testing.Lambda\Sagittaras.CDK.Testing.Lambda.csproj", "{126FDC69-6A66-482C-8300-21BA741C85CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Tests.Lambda", "Sagittaras.CDK.Tests.Lambda\Sagittaras.CDK.Tests.Lambda.csproj", "{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,8 @@ Global
 		{26D61AA8-0D2F-4DC0-AB14-A614CEC50C9D} = {F2C4D978-97A6-4451-AAD2-16EDCA158D97}
 		{AE2CE059-04E9-481B-BDCA-28F8C84081D5} = {3A01C380-5151-4039-A00C-A33687E00861}
 		{62A39295-39AA-4D7A-B9DA-49E41FF7748B} = {506BD5FC-1E9D-47D4-A609-F977EDF69184}
+		{126FDC69-6A66-482C-8300-21BA741C85CF} = {3A01C380-5151-4039-A00C-A33687E00861}
+		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3} = {F2C4D978-97A6-4451-AAD2-16EDCA158D97}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -161,5 +167,13 @@ Global
 		{62A39295-39AA-4D7A-B9DA-49E41FF7748B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62A39295-39AA-4D7A-B9DA-49E41FF7748B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62A39295-39AA-4D7A-B9DA-49E41FF7748B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{126FDC69-6A66-482C-8300-21BA741C85CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{126FDC69-6A66-482C-8300-21BA741C85CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{126FDC69-6A66-482C-8300-21BA741C85CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{126FDC69-6A66-482C-8300-21BA741C85CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068ADC7D-C3F2-47C7-AB7B-9C7CC18DAEF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
