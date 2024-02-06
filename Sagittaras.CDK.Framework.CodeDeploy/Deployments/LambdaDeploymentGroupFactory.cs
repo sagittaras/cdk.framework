@@ -20,6 +20,14 @@ public class LambdaDeploymentGroupFactory : DeploymentGroupFactory<LambdaDeploym
         };
     }
 
+    public LambdaDeploymentGroupFactory(Construct scope, string groupName, Alias alias) : base(scope, groupName)
+    {
+        Props = new LambdaDeploymentGroupProps
+        {
+            Alias = alias
+        };
+    }
+
     /// <inheritdoc />
     public override LambdaDeploymentGroupProps Props { get; }
 
