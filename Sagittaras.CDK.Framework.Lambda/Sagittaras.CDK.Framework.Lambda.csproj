@@ -4,6 +4,14 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>1.0.0-preview-01</Version>
+        <Authors>Sagittaras Games</Authors>
+        <PackageProjectUrl>https://github.com/sagittaras/cdk.framework</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/sagittaras/cdk.framework/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/sagittaras/cdk.framework</RepositoryUrl>
+        <Title>Lambda CDK framework</Title>
+        <Description>Framework for easier building of Lambda function with CDK.</Description>
     </PropertyGroup>
 
     <ItemGroup>
