@@ -18,7 +18,7 @@ public class ProjectAssertion : ResourceAssertion<ProjectProperties>
             action(x.Environment);
         });
     }
-    
+
     public ProjectAssertion WithProjectName(string projectName)
     {
         SetProperty(x => x.Name = projectName);
@@ -30,13 +30,13 @@ public class ProjectAssertion : ResourceAssertion<ProjectProperties>
         SetEnvironmentProperty(x => x.ComputeType = type);
         return this;
     }
-    
+
     public ProjectAssertion HasEnvironmentType(EnvironmentType type)
     {
         SetEnvironmentProperty(x => x.Type = type);
         return this;
     }
-    
+
     public ProjectAssertion UsesImage(string image)
     {
         SetEnvironmentProperty(x => x.Image = image);

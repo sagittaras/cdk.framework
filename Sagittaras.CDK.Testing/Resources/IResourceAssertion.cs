@@ -28,7 +28,7 @@ public interface IResourceAssertion
     /// </summary>
     /// <param name="template">Instance of template.</param>
     void Assert(Template template);
-    
+
     /// <summary>
     /// Asserts that the template has a given number of resources of the given type.
     /// </summary>

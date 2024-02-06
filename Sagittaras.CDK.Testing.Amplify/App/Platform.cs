@@ -6,7 +6,7 @@ public enum Platform
 {
     [CdkValue("WEB")]
     Web,
-    
+
     [CdkValue("COMPUTE")]
     Compute
 }

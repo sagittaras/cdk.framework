@@ -6,7 +6,7 @@ public enum KskStatus
 {
     [CdkValue("ACTIVE")]
     Active,
-    
+
     [CdkValue("INACTIVE")]
     Inactive
 }

@@ -28,14 +28,14 @@ public class PublicHostedZoneTest : ConstructTest
             .Construct();
 
         Template template = StackTemplate;
-        
+
         new HostedZoneAssertion()
             .WithName(Domain)
             .Assert(template);
-        
+
         new HostedZoneAssertion()
             .AssertCount(template, 1);
-        
+
         new RecordSetAssertion()
             .AssertCount(template, 0);
     }
@@ -51,18 +51,18 @@ public class PublicHostedZoneTest : ConstructTest
             .Construct();
 
         Template template = StackTemplate;
-        
+
         new KeyAssertion()
             .AssertCount(template, 1);
-        
+
         new AliasAssertion()
             .WithAliasName("alias/examplecom-key")
             .Assert(template);
-        
+
         new KeySigningKeyAssertion()
             .HasStatus(KskStatus.Active)
             .Assert(template);
-        
+
         new DnsSecAssertion()
             .HasKsk("examplecom")
             .Assert(template);
