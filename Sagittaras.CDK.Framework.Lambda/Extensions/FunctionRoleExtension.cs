@@ -39,7 +39,7 @@ public static class FunctionRoleExtension
             Effect = Effect.ALLOW,
             Resources = new[]
             {
-                queueArn ?? $"arn:aws:sqs:eu-central-1:{Cloudspace.AccountId}:*"
+                queueArn ?? $"arn:aws:sqs:*:{Cloudspace.AccountId}:*"
             },
             Actions = new[]
             {
