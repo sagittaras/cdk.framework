@@ -20,5 +20,5 @@ public class AppProperties : ResourceProperties
     /// <summary>
     /// Is the Amplify application static or is it using server-side rendering.
     /// </summary>
-    public string? Platform { get; set; }
+    public Platform? Platform { get; set; }
 }

@@ -37,7 +37,7 @@ public class AppAssertion : ResourceAssertion<AppProperties>
     /// </summary>
     /// <param name="platform"></param>
     /// <returns></returns>
-    public AppAssertion UsingPlatform(string platform)
+    public AppAssertion UsingPlatform(Platform platform)
     {
         SetProperty(x => x.Platform = platform);
         return this;

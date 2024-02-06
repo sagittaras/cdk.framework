@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Reflection;
+using Sagittaras.CDK.Framework.Extensions;
 
 namespace Sagittaras.CDK.Testing.Resources;
 
@@ -31,8 +32,11 @@ public abstract class ResourceProperties : IResourceProperties
                     dict[property.Name] = resourceProperties.ToDictionary();
                     break;
                 case IEnumerable<IResourceProperties> propsCollection:
-                    // Without cast, it's causing a JSII error, because in reflection is marked as interface.
+                    // Without cast, it's causing a JSII error, because in reflection it is marked as interface.
                     dict[property.Name] = propsCollection.Select(x => x.ToDictionary() as Dictionary<string, object>).ToArray();
+                    break;
+                case Enum @enum:
+                    dict[property.Name] = @enum.GetCdkValue();
                     break;
                 default:
                     dict[property.Name] = value;

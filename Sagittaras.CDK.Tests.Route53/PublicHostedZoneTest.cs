@@ -60,7 +60,7 @@ public class PublicHostedZoneTest : ConstructTest
             .Assert(template);
         
         new KeySigningKeyAssertion()
-            .HasStatus("ACTIVE")
+            .HasStatus(KskStatus.Active)
             .Assert(template);
         
         new DnsSecAssertion()

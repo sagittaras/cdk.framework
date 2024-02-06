@@ -6,6 +6,7 @@ using Sagittaras.CDK.Testing.Amplify.App;
 using Sagittaras.CDK.Testing.Amplify.Branch;
 using Sagittaras.CDK.Testing.Amplify.Domain;
 using Xunit;
+using Platform = Sagittaras.CDK.Testing.Amplify.App.Platform;
 
 namespace Sagittaras.CDK.Tests.Amplify;
 
@@ -43,7 +44,7 @@ public class AmplifyAppTest : ConstructTest
         new AppAssertion()
             .WithAppName(AppName)
             .FromRepository("https://github.com/sagittaras/website")
-            .UsingPlatform("WEB")
+            .UsingPlatform(Platform.Web)
             .Assert(template);
 
         new BranchAssertion()
