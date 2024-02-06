@@ -52,7 +52,13 @@ public abstract class ResourceAssertion<TProperties> : IResourceAssertion<TPrope
     /// <inheritdoc />
     public void Assert(Template template)
     {
-        template.Assert(this);
+        template.HasResource(Type, GetResourceDescription(template));
+    }
+
+    /// <inheritdoc />
+    public void AssertCount(Template template, int count)
+    {
+        template.ResourceCountIs(Type, count);
     }
 
     /// <summary>

@@ -33,15 +33,16 @@ public class PublicHostedZoneTest : ConstructTest
             .Construct();
 
         Template template = StackTemplate;
-        template.Assert(new HostedZoneAssertion
-        {
-            Properties = new HostedZoneProperties
-            {
-                Name = Domain
-            }
-        });
-        template.AssertCount<HostedZoneAssertion>(1);
-        template.AssertCount<RecordSetAssertion>(0);
+        
+        new HostedZoneAssertion()
+            .WithName(Domain)
+            .Assert(template);
+        
+        new HostedZoneAssertion()
+            .AssertCount(template, 1);
+        
+        new RecordSetAssertion()
+            .AssertCount(template, 0);
     }
 
     /// <summary>
@@ -55,24 +56,20 @@ public class PublicHostedZoneTest : ConstructTest
             .Construct();
 
         Template template = StackTemplate;
-        template.AssertCount<KeyAssertion>(1);
-        template.Assert(new AliasAssertion
-        {
-            Properties = new AliasProperties
-            {
-                AliasName = "alias/examplecom-key"
-            }
-        });
-        template.Assert(new KeySigningKeyAssertion
-        {
-            Properties = new KeySigningKeyProperties
-            {
-                Status = "ACTIVE"
-            }
-        });
-        template.Assert(new DnsSecAssertion
-        {
-            DependsOn = new DnsSecDependency("examplecom")
-        });
+        
+        new KeyAssertion()
+            .AssertCount(template, 1);
+        
+        new AliasAssertion()
+            .WithAliasName("alias/examplecom-key")
+            .Assert(template);
+        
+        new KeySigningKeyAssertion()
+            .HasStatus("ACTIVE")
+            .Assert(template);
+        
+        new DnsSecAssertion()
+            .HasKsk("examplecom")
+            .Assert(template);
     }
 }

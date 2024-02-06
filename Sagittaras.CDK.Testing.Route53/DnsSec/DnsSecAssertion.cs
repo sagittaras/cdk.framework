@@ -9,4 +9,10 @@ public class DnsSecAssertion : ResourceAssertion<DnsSecProperties>
 {
     /// <inheritdoc />
     public override string Type => "AWS::Route53::DNSSEC";
+
+    public DnsSecAssertion HasKsk(string name)
+    {
+        DependsOn = new DnsSecDependency("examplecom");
+        return this;
+    }
 }

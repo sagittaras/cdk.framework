@@ -9,4 +9,10 @@ public class KeySigningKeyAssertion : ResourceAssertion<KeySigningKeyProperties>
 {
     /// <inheritdoc />
     public override string Type => "AWS::Route53::KeySigningKey";
+
+    public KeySigningKeyAssertion HasStatus(string status)
+    {
+        SetProperty(x => x.Status = status);
+        return this;
+    }
 }
