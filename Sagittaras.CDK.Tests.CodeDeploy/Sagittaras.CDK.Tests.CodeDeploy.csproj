@@ -20,4 +20,10 @@
         </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Sagittaras.CDK.Framework.CodeDeploy\Sagittaras.CDK.Framework.CodeDeploy.csproj"/>
+        <ProjectReference Include="..\Sagittaras.CDK.Testing.CodeDeploy\Sagittaras.CDK.Testing.CodeDeploy.csproj"/>
+        <ProjectReference Include="..\Sagittaras.CDK.Tests\Sagittaras.CDK.Tests.csproj"/>
+    </ItemGroup>
+
 </Project>
