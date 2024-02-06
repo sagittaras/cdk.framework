@@ -1,4 +1,5 @@
 using Amazon.CDK;
+using Amazon.CDK.AWS.EC2;
 using Amazon.CDK.AWS.Lambda;
 using Constructs;
 using Sagittaras.CDK.Framework.Factory;
@@ -99,6 +100,44 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
     public LambdaFactory<TFunction, TProps> WithXRay()
     {
         Options.Tracing = Tracing.ACTIVE;
+        return this;
+    }
+
+    /// <summary>
+    ///     Configures the Lambda function to use the default VPC.
+    /// </summary>
+    /// <param name="subnetIds">IDs of subnets to which the Lambda function should be connected.</param>
+    /// <returns></returns>
+    public LambdaFactory<TFunction, TProps> ConnectToDefaultVpc(params string[] subnetIds)
+    {
+        Options.Vpc = Vpc.FromLookup(this, "default-vpc", new VpcLookupOptions
+        {
+            IsDefault = true
+        });
+
+        if (!subnetIds.Any()) return this;
+
+        Options.VpcSubnets = new SubnetSelection
+        {
+            Subnets = subnetIds.Select(subnetId => Subnet.FromSubnetAttributes(this, subnetId, new SubnetAttributes
+            {
+                SubnetId = subnetId
+            })).ToArray()
+        };
+
+        return this;
+    }
+
+    /// <summary>
+    ///     Allows the function to be connected to the public subnet.
+    /// </summary>
+    /// <remarks>
+    ///     See: https://stackoverflow.com/questions/52992085/why-cant-an-aws-lambda-function-inside-a-public-subnet-in-a-vpc-connect-to-the/52994841#52994841
+    /// </remarks>
+    /// <returns></returns>
+    public LambdaFactory<TFunction, TProps> AllowPublicSubnet()
+    {
+        Options.AllowPublicSubnet = true;
         return this;
     }
 }
