@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Amazon.CDK;
 using Amazon.CDK.AWS.Lambda;
 using Constructs;
@@ -106,7 +106,7 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
         EnvironmentVariables[key] = value;
         return this;
     }
-    
+
     /// <summary>
     /// Enables X-Ray tracing for the function.
     /// </summary>
