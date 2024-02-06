@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Version>1.0.0-preview-01</Version>
+        <Title>CodeDeploy CDK Framework</Title>
+        <Description>Framework for easier building fo CodeDeploy with CDK.</Description>
+        <PackageProjectUrl>https://github.com/sagittaras/cdk.framework</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/sagittaras/cdk.framework/blob/main/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/sagittaras/cdk.framework</RepositoryUrl>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Sagittaras.CDK.Framework\Sagittaras.CDK.Framework.csproj"/>
+    </ItemGroup>
+
+</Project>

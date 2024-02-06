@@ -1,8 +1,8 @@
-using System.Reflection;
 using Amazon.CDK;
 using Amazon.CDK.AWS.Lambda;
 using Constructs;
 using Sagittaras.CDK.Framework.Factory;
+using Sagittaras.CDK.Framework.Props;
 
 namespace Sagittaras.CDK.Framework.Lambda;
 
@@ -44,22 +44,7 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
             Options.Environment = EnvironmentVariables;
         }
 
-        Type optionsType = Options.GetType();
-        Type propsType = props.GetType();
-
-        Dictionary<string, object> definedOptions = optionsType.GetProperties()
-            .Select(x => new KeyValuePair<string, object?>(x.Name, x.GetValue(Options)))
-            .Where(x => x.Value is not null)
-            .ToDictionary(x => x.Key, x => x.Value!);
-
-        Dictionary<string, PropertyInfo> targetProps = propsType.GetProperties()
-            .Where(x => definedOptions.ContainsKey(x.Name))
-            .ToDictionary(x => x.Name, x => x);
-
-        foreach ((string name, object value) in definedOptions)
-        {
-            targetProps[name].SetValue(props, value);
-        }
+        PropsMapper.Map(Options, props);
     }
 
     /// <summary>
