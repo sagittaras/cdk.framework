@@ -37,7 +37,7 @@ public class AmplifyAppTest : ConstructTest
         Template template = StackTemplate;
         new AppAssertion()
             .AssertCount(template, 1);
-        
+
         new BranchAssertion()
             .AssertCount(template, 1);
 
@@ -74,10 +74,10 @@ public class AmplifyAppTest : ConstructTest
         factory.Construct();
 
         Template template = StackTemplate;
-        
+
         new AppAssertion()
             .AssertCount(template, 1);
-        
+
         new DomainAssertion()
             .AssertCount(template, 1);
 

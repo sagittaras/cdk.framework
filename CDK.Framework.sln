@@ -51,6 +51,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing.Ampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Tests.Amplify", "Sagittaras.CDK.Tests.Amplify\Sagittaras.CDK.Tests.Amplify.csproj", "{0C9342A1-2C47-4AEB-BB00-3CBD7B767CCC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Testing.CodeBuild", "Sagittaras.CDK.Testing.CodeBuild\Sagittaras.CDK.Testing.CodeBuild.csproj", "{D8E118A5-A14C-4498-808A-BFFF425209F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sagittaras.CDK.Tests.CodeBuild", "Sagittaras.CDK.Tests.CodeBuild\Sagittaras.CDK.Tests.CodeBuild.csproj", "{26D61AA8-0D2F-4DC0-AB14-A614CEC50C9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,8 @@ Global
 		{FF8FB1E8-9071-470E-A4F3-6C0CD27716F4} = {3A01C380-5151-4039-A00C-A33687E00861}
 		{2DAB70CD-F192-43B4-B834-FF448AF70F9E} = {3A01C380-5151-4039-A00C-A33687E00861}
 		{0C9342A1-2C47-4AEB-BB00-3CBD7B767CCC} = {F2C4D978-97A6-4451-AAD2-16EDCA158D97}
+		{D8E118A5-A14C-4498-808A-BFFF425209F4} = {3A01C380-5151-4039-A00C-A33687E00861}
+		{26D61AA8-0D2F-4DC0-AB14-A614CEC50C9D} = {F2C4D978-97A6-4451-AAD2-16EDCA158D97}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{940EEEA3-A068-4793-A44A-D2FCE1143E49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -133,5 +139,13 @@ Global
 		{0C9342A1-2C47-4AEB-BB00-3CBD7B767CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C9342A1-2C47-4AEB-BB00-3CBD7B767CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C9342A1-2C47-4AEB-BB00-3CBD7B767CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8E118A5-A14C-4498-808A-BFFF425209F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8E118A5-A14C-4498-808A-BFFF425209F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8E118A5-A14C-4498-808A-BFFF425209F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8E118A5-A14C-4498-808A-BFFF425209F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D61AA8-0D2F-4DC0-AB14-A614CEC50C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D61AA8-0D2F-4DC0-AB14-A614CEC50C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D61AA8-0D2F-4DC0-AB14-A614CEC50C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D61AA8-0D2F-4DC0-AB14-A614CEC50C9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
