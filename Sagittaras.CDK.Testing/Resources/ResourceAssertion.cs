@@ -1,6 +1,5 @@
 using System.Reflection;
 using Amazon.CDK.Assertions;
-using Sagittaras.CDK.Testing.Extensions;
 
 namespace Sagittaras.CDK.Testing.Resources;
 

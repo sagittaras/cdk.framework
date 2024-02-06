@@ -5,7 +5,6 @@ using Sagittaras.CDK.Framework.Amplify;
 using Sagittaras.CDK.Testing.Amplify.App;
 using Sagittaras.CDK.Testing.Amplify.Branch;
 using Sagittaras.CDK.Testing.Amplify.Domain;
-using Sagittaras.CDK.Testing.Extensions;
 using Xunit;
 
 namespace Sagittaras.CDK.Tests.Amplify;
@@ -35,8 +34,11 @@ public class AmplifyAppTest : ConstructTest
             .Construct();
 
         Template template = StackTemplate;
-        template.AssertCount<AppAssertion>(1);
-        template.AssertCount<BranchAssertion>(1);
+        new AppAssertion()
+            .AssertCount(template, 1);
+        
+        new BranchAssertion()
+            .AssertCount(template, 1);
 
         new AppAssertion()
             .WithAppName(AppName)
@@ -71,8 +73,12 @@ public class AmplifyAppTest : ConstructTest
         factory.Construct();
 
         Template template = StackTemplate;
-        template.AssertCount<AppAssertion>(1);
-        template.AssertCount<DomainAssertion>(1);
+        
+        new AppAssertion()
+            .AssertCount(template, 1);
+        
+        new DomainAssertion()
+            .AssertCount(template, 1);
 
         new DomainAssertion()
             .WithDomainName("example.com")
