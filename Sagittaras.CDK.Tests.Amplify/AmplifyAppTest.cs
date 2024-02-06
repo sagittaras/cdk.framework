@@ -2,7 +2,6 @@ using Amazon.CDK;
 using Amazon.CDK.Assertions;
 using Amazon.CDK.AWS.Amplify.Alpha;
 using Sagittaras.CDK.Framework.Amplify;
-using Sagittaras.CDK.Testing.Amplify;
 using Sagittaras.CDK.Testing.Amplify.App;
 using Sagittaras.CDK.Testing.Amplify.Branch;
 using Sagittaras.CDK.Testing.Amplify.Domain;

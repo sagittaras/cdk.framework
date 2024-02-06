@@ -1,6 +1,7 @@
 using Sagittaras.CDK.Testing.Resources;
+using Sagittaras.CDK.Testing.Route53.KSK;
 
-namespace Sagittaras.CDK.Testing.Route53;
+namespace Sagittaras.CDK.Testing.Route53.DnsSec;
 
 /// <summary>
 /// Class defining DNS SEC dependency on Key Signing Key.

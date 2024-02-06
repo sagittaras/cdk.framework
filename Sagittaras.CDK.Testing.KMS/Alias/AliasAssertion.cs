@@ -1,6 +1,6 @@
 using Sagittaras.CDK.Testing.Resources;
 
-namespace Sagittaras.CDK.Testing.KMS;
+namespace Sagittaras.CDK.Testing.KMS.Alias;
 
 /// <summary>
 /// Assertion for AWS::KMS::Alias.

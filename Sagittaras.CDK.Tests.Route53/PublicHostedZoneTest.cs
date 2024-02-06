@@ -3,8 +3,14 @@ using Amazon.CDK.Assertions;
 using Sagittaras.CDK.Framework.Route53;
 using Sagittaras.CDK.Testing.Extensions;
 using Sagittaras.CDK.Testing.KMS;
+using Sagittaras.CDK.Testing.KMS.Alias;
+using Sagittaras.CDK.Testing.KMS.Key;
 using Sagittaras.CDK.Testing.Resources;
 using Sagittaras.CDK.Testing.Route53;
+using Sagittaras.CDK.Testing.Route53.DnsSec;
+using Sagittaras.CDK.Testing.Route53.HostedZone;
+using Sagittaras.CDK.Testing.Route53.KSK;
+using Sagittaras.CDK.Testing.Route53.RecordSet;
 using Xunit;
 
 namespace Sagittaras.CDK.Tests.Route53;

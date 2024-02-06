@@ -1,6 +1,6 @@
 using Sagittaras.CDK.Testing.Resources;
 
-namespace Sagittaras.CDK.Testing.Route53;
+namespace Sagittaras.CDK.Testing.Route53.DnsSec;
 
 /// <summary>
 /// Assertion for Aws::Route53::DNSSEC.
