@@ -27,7 +27,7 @@ public partial class UserPoolFactory
     ///     Sets custom cognito domain prefix.
     /// </summary>
     /// <param name="prefix">Selected prefix.</param>
-    public void SetCognitoDomainPrefix(string prefix)
+    public UserPoolFactory SetCognitoDomainPrefix(string prefix)
     {
         _domains.Add($"cognito-{prefix.ToResourceId()}", new UserPoolDomainOptions
         {
@@ -36,6 +36,7 @@ public partial class UserPoolFactory
                 DomainPrefix = prefix
             }
         });
+        return this;
     }
 
     /// <summary>
@@ -43,7 +44,7 @@ public partial class UserPoolFactory
     /// </summary>
     /// <param name="domainName">Name of assigned domain.</param>
     /// <param name="certificateArn">ARN of the certificate for the cognito domain.</param>
-    public void AddCustomDomain(string domainName, string certificateArn)
+    public UserPoolFactory AddCustomDomain(string domainName, string certificateArn)
     {
         _domains.Add(domainName.ToResourceId(), new UserPoolDomainOptions
         {
@@ -53,5 +54,6 @@ public partial class UserPoolFactory
                 Certificate = Certificate.FromCertificateArn(this, $"{domainName.ToResourceId()}-certificate", certificateArn)
             }
         });
+        return this;
     }
 }

@@ -24,9 +24,10 @@ public partial class UserPoolFactory
     /// <summary>
     ///     Creates a new public client definition for the user-pool.
     /// </summary>
-    public void AddPublicClient()
+    public UserPoolFactory AddPublicClient()
     {
         _clients.Add("public", new UserPoolClientOptions());
+        return this;
     }
 
     /// <summary>
@@ -34,8 +35,9 @@ public partial class UserPoolFactory
     /// </summary>
     /// <param name="id"></param>
     /// <param name="options"></param>
-    public void AddClient(string id, UserPoolClientOptions options)
+    public UserPoolFactory AddClient(string id, UserPoolClientOptions options)
     {
         _clients.Add(id, options);
+        return this;
     }
 }

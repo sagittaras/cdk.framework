@@ -110,7 +110,6 @@ public partial class UserPoolFactory : ConstructFactory<UserPool, UserPoolProps>
             Mutable = mutable
         });
 
-
         return this;
     }
 }
