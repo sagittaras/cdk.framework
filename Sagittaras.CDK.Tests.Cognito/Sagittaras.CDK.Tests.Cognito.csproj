@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Sagittaras.CDK.Framework.Cognito\Sagittaras.CDK.Framework.Cognito.csproj"/>
         <ProjectReference Include="..\Sagittaras.CDK.Testing.Cognito\Sagittaras.CDK.Testing.Cognito.csproj"/>
         <ProjectReference Include="..\Sagittaras.CDK.Tests\Sagittaras.CDK.Tests.csproj"/>
     </ItemGroup>
