@@ -13,4 +13,8 @@
         <RepositoryUrl>https://github.com/sagittaras/cdk.framework</RepositoryUrl>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\Sagittaras.CDK.Testing\Sagittaras.CDK.Testing.csproj"/>
+    </ItemGroup>
+
 </Project>
