@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Reflection;
 using Sagittaras.CDK.Framework.Extensions;
 
@@ -36,7 +35,15 @@ public abstract class ResourceProperties : IResourceProperties
                     dict[property.Name] = propsCollection.Select(x => x.ToDictionary() as Dictionary<string, object>).ToArray();
                     break;
                 case Enum @enum:
-                    dict[property.Name] = @enum.GetCdkValue();
+                    if (Attribute.IsDefined(@enum.GetType(), typeof(FlagsAttribute)))
+                    {
+                        dict[property.Name] = @enum.GetCdkFlagValues();
+                    }
+                    else
+                    {
+                        dict[property.Name] = @enum.GetCdkValue();
+                    }
+
                     break;
                 default:
                     dict[property.Name] = value;

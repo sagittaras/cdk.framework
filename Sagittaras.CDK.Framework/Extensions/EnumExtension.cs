@@ -31,4 +31,20 @@ public static class EnumExtension
         CdkValueAttribute? attribute = field.GetCustomAttribute<CdkValueAttribute>();
         return attribute?.Value ?? value.ToString();
     }
+
+    /// <summary>
+    ///     Gets the translated CDK values from Enum which is marked as flags.
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static string[] GetCdkFlagValues(this Enum value)
+    {
+        Type type = value.GetType();
+
+        return (
+            from Enum flag in Enum.GetValues(type)
+            where value.HasFlag(flag) && !flag.Equals(default(Enum))
+            select GetCdkValue(flag)
+        ).ToArray();
+    }
 }
