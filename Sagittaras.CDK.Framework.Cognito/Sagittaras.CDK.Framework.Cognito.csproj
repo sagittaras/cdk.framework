@@ -18,4 +18,13 @@
         <ProjectReference Include="..\Sagittaras.CDK.Framework\Sagittaras.CDK.Framework.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+        <Compile Update="UserPools\UserPoolFactory.Domains.cs">
+            <DependentUpon>UserPoolFactory.cs</DependentUpon>
+        </Compile>
+        <Compile Update="UserPools\UserPoolFactory.Clients.cs">
+            <DependentUpon>UserPoolFactory.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
 </Project>
