@@ -71,7 +71,7 @@ public class CodeBuildActionBuilder : ActionBuilder<CodeBuildAction>
     /// <returns></returns>
     public CodeBuildActionBuilder UsesInputArtifact(string artifactName)
     {
-        _props.Input = _builder.UseArtifact(artifactName);
+        _props.Input = UseArtifact(artifactName);
 
         return this;
     }

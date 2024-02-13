@@ -30,4 +30,32 @@ public static class PipelineStageDeployExtension
         stageBuilder.AddAction(new ManualApprovalActionBuilder(stageBuilder, actionName, information));
         return stageBuilder;
     }
+
+    /// <summary>
+    ///     Adds a deploy action that will prepare the change set for the CloudFormation stack deployment.
+    /// </summary>
+    /// <param name="stageBuilder"></param>
+    /// <param name="actionName"></param>
+    /// <returns></returns>
+    public static CloudFormationChangeSetActionBuilder UsesCloudFormationChangeSet(this PipelineStageBuilder stageBuilder, string actionName)
+    {
+        CloudFormationChangeSetActionBuilder builder = new(stageBuilder, actionName);
+        stageBuilder.AddAction(builder);
+
+        return builder;
+    }
+
+    /// <summary>
+    ///     Adds a deploy action that will execute the change set on the CloudFormation stack.
+    /// </summary>
+    /// <param name="stageBuilder"></param>
+    /// <param name="actionName"></param>
+    /// <returns></returns>
+    public static CloudFormationExecuteChangeSetActionBuilder UsesCloudFormationExecuteChangeSet(this PipelineStageBuilder stageBuilder, string actionName)
+    {
+        CloudFormationExecuteChangeSetActionBuilder builder = new(stageBuilder, actionName);
+        stageBuilder.AddAction(builder);
+
+        return builder;
+    }
 }

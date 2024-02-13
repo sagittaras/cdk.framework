@@ -67,7 +67,7 @@ public class PipelineStageBuilder : CdkFactory<IStageProps>, IPipelineStageBuild
     }
 
     /// <summary>
-    /// Uses an artifact with the given name.s
+    /// Uses an artifact with the given name.
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
