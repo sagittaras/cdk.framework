@@ -15,7 +15,7 @@ public static class ExpressionMapper
     /// <typeparam name="TSource"></typeparam>
     /// <typeparam name="TProperty"></typeparam>
     /// <exception cref="ArgumentException"></exception>
-    public static void SetValue<TSource, TProperty>(Expression<Func<TSource, TProperty>> expression, object instance, object value)
+    public static void SetValue<TSource, TProperty>(Expression<Func<TSource, TProperty>> expression, object instance, object? value)
     {
         if (expression.Body is MemberExpression member)
         {
