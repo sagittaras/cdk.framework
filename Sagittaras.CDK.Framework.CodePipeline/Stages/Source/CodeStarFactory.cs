@@ -66,7 +66,7 @@ public class CodeStarFactory : CdkFactory<CodeStarConnectionsSourceAction>
     /// <param name="branch"></param>
     /// <param name="triggerOnPush"></param>
     /// <returns></returns>
-    public CodeStarFactory UseBranch(string branch, bool triggerOnPush = false)
+    public CodeStarFactory UseBranch(string branch, bool triggerOnPush = true)
     {
         _props.Branch = branch;
         _props.TriggerOnPush = triggerOnPush;
