@@ -33,7 +33,7 @@ public static class PipelineStageDeployExtension
 
         ManualApprovalAction action = builder.Construct();
         stageBuilder.AddAction(action);
-        
+
         return stageBuilder;
     }
 

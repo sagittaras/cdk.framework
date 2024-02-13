@@ -47,7 +47,7 @@ public class PipelineStageBuilder : CdkFactory<IStageProps>, IPipelineStageBuild
     public override IStageProps Construct()
     {
         _props.Actions = _actions.ToArray();
-        
+
         return _props;
     }
 
