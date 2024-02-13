@@ -21,15 +21,27 @@ public static class PipelineStageSourceExtension
     /// <summary>
     /// Adds CodeStar source to the stage.
     /// </summary>
-    /// <param name="builder"></param>
+    /// <param name="stageBuilder"></param>
     /// <param name="sourceName"></param>
-    /// <param name="configure"></param>
     /// <returns></returns>
-    public static PipelineStageBuilder UsesCodeStar(this PipelineStageBuilder builder, string sourceName, Action<CodeStarFactory> configure)
+    public static CodeStarBuilder UsesCodeStar(this PipelineStageBuilder stageBuilder, string sourceName)
     {
-        CodeStarFactory factory = new(builder, sourceName);
-        configure.Invoke(factory);
-        builder.AddAction(factory.Construct());
+        CodeStarBuilder builder = new(stageBuilder, sourceName);
+        stageBuilder.AddAction(builder);
+
+        return builder;
+    }
+
+    /// <summary>
+    /// Adds ECR source to the stage.
+    /// </summary>
+    /// <param name="stageBuilder"></param>
+    /// <param name="sourceName"></param>
+    /// <returns></returns>
+    public static EcrSourceBuilder UsesEcr(this PipelineStageBuilder stageBuilder, string sourceName)
+    {
+        EcrSourceBuilder builder = new(stageBuilder, sourceName);
+        stageBuilder.AddAction(builder);
 
         return builder;
     }

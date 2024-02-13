@@ -21,15 +21,13 @@ public static class PipelineStageBuildExtension
     /// <summary>
     /// Adds CodeBuild action to the stage.
     /// </summary>
-    /// <param name="builder"></param>
+    /// <param name="stageBuilder"></param>
     /// <param name="actionName"></param>
-    /// <param name="configure"></param>
     /// <returns></returns>
-    public static PipelineStageBuilder UsesCodeBuild(this PipelineStageBuilder builder, string actionName, Action<CodeBuildActionFactory> configure)
+    public static CodeBuildActionBuilder UsesCodeBuild(this PipelineStageBuilder stageBuilder, string actionName)
     {
-        CodeBuildActionFactory factory = new(builder, actionName);
-        configure.Invoke(factory);
-        builder.AddAction(factory.Construct());
+        CodeBuildActionBuilder builder = new(stageBuilder, actionName);
+        stageBuilder.AddAction(builder);
 
         return builder;
     }

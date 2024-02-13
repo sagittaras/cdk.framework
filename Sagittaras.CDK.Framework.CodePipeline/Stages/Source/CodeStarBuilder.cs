@@ -1,12 +1,11 @@
 using Amazon.CDK.AWS.CodePipeline.Actions;
-using Sagittaras.CDK.Framework.Factory;
 
 namespace Sagittaras.CDK.Framework.CodePipeline.Stages.Source;
 
 /// <summary>
 /// Builder factory used to define a source connection with code star.
 /// </summary>
-public class CodeStarFactory : CdkFactory<CodeStarConnectionsSourceAction>
+public class CodeStarBuilder : ActionBuilder<CodeStarConnectionsSourceAction>
 {
     /// <summary>
     /// Builder in which scope the source is being defined.
@@ -18,7 +17,7 @@ public class CodeStarFactory : CdkFactory<CodeStarConnectionsSourceAction>
     /// </summary>
     private readonly CodeStarConnectionsSourceActionProps _props;
 
-    public CodeStarFactory(PipelineStageBuilder builder, string name) : base(builder, name)
+    public CodeStarBuilder(PipelineStageBuilder builder, string name) : base(builder, name)
     {
         _builder = builder;
         _props = new CodeStarConnectionsSourceActionProps
@@ -39,7 +38,7 @@ public class CodeStarFactory : CdkFactory<CodeStarConnectionsSourceAction>
     /// </summary>
     /// <param name="arn"></param>
     /// <returns></returns>
-    public CodeStarFactory UsesConnection(string arn)
+    public CodeStarBuilder UsesConnection(string arn)
     {
         _props.ConnectionArn = arn;
 
@@ -52,7 +51,7 @@ public class CodeStarFactory : CdkFactory<CodeStarConnectionsSourceAction>
     /// <param name="owner"></param>
     /// <param name="repo"></param>
     /// <returns></returns>
-    public CodeStarFactory FromRepository(string owner, string repo)
+    public CodeStarBuilder FromRepository(string owner, string repo)
     {
         _props.Owner = owner;
         _props.Repo = repo;
@@ -66,7 +65,7 @@ public class CodeStarFactory : CdkFactory<CodeStarConnectionsSourceAction>
     /// <param name="branch"></param>
     /// <param name="triggerOnPush"></param>
     /// <returns></returns>
-    public CodeStarFactory UseBranch(string branch, bool triggerOnPush = true)
+    public CodeStarBuilder UseBranch(string branch, bool triggerOnPush = true)
     {
         _props.Branch = branch;
         _props.TriggerOnPush = triggerOnPush;
@@ -79,7 +78,7 @@ public class CodeStarFactory : CdkFactory<CodeStarConnectionsSourceAction>
     /// </summary>
     /// <param name="outputName"></param>
     /// <returns></returns>
-    public CodeStarFactory HasOutput(string outputName)
+    public CodeStarBuilder HasOutput(string outputName)
     {
         _props.Output = _builder.UseArtifact(outputName);
         return this;

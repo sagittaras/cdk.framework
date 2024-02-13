@@ -22,7 +22,7 @@ public class PipelineStageBuilder : CdkFactory<IStageProps>, IPipelineStageBuild
     /// <summary>
     /// List of actions defined for the stage.
     /// </summary>
-    private readonly List<IAction> _actions = new();
+    private readonly List<IActionBuilder> _actions = new();
 
     /// <summary>
     /// 
@@ -46,15 +46,24 @@ public class PipelineStageBuilder : CdkFactory<IStageProps>, IPipelineStageBuild
     /// <inheritdoc />
     public override IStageProps Construct()
     {
-        _props.Actions = _actions.ToArray();
+        _props.Actions = _actions
+            .Select(x => x.Construct())
+            .ToArray();
+        
         return _props;
     }
 
     /// <inheritdoc />
-    public IPipelineStageBuilder AddAction(IAction action)
+    public IPipelineStageBuilder AddAction(IActionBuilder action)
     {
         _actions.Add(action);
         return this;
+    }
+
+    /// <inheritdoc />
+    public IActionBuilder GetAction(string name)
+    {
+        return _actions.First(x => x.ActionName == name);
     }
 
     /// <summary>

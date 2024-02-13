@@ -1,13 +1,12 @@
 using Amazon.CDK.AWS.CodeBuild;
 using Amazon.CDK.AWS.CodePipeline.Actions;
-using Sagittaras.CDK.Framework.Factory;
 
 namespace Sagittaras.CDK.Framework.CodePipeline.Stages.Build;
 
 /// <summary>
 /// Factory building the code build action for pipeline stage.
 /// </summary>
-public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
+public class CodeBuildActionBuilder : ActionBuilder<CodeBuildAction>
 {
     /// <summary>
     /// Stage builder in which context the action is created.
@@ -29,7 +28,7 @@ public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
     /// </summary>
     private readonly Dictionary<string, IBuildEnvironmentVariable> _buildVariables = new();
 
-    public CodeBuildActionFactory(PipelineStageBuilder builder, string name) : base(builder, name)
+    public CodeBuildActionBuilder(PipelineStageBuilder builder, string name) : base(builder, name)
     {
         _builder = builder;
         _props = new CodeBuildActionProps
@@ -58,7 +57,7 @@ public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
     /// </summary>
     /// <param name="project"></param>
     /// <returns></returns>
-    public CodeBuildActionFactory UsesProject(IProject project)
+    public CodeBuildActionBuilder UsesProject(IProject project)
     {
         _props.Project = project;
 
@@ -70,7 +69,7 @@ public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
     /// </summary>
     /// <param name="artifactName"></param>
     /// <returns></returns>
-    public CodeBuildActionFactory UsesInputArtifact(string artifactName)
+    public CodeBuildActionBuilder UsesInputArtifact(string artifactName)
     {
         _props.Input = _builder.UseArtifact(artifactName);
 
@@ -82,7 +81,7 @@ public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
     /// </summary>
     /// <param name="artifactName"></param>
     /// <returns></returns>
-    public CodeBuildActionFactory HasOutputArtifact(string artifactName)
+    public CodeBuildActionBuilder HasOutputArtifact(string artifactName)
     {
         _outputs.Add(artifactName);
 
@@ -94,7 +93,7 @@ public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
     /// </summary>
     /// <param name="artifactNames"></param>
     /// <returns></returns>
-    public CodeBuildActionFactory HasOutputArtifacts(params string[] artifactNames)
+    public CodeBuildActionBuilder HasOutputArtifacts(params string[] artifactNames)
     {
         _outputs.AddRange(artifactNames);
 
@@ -107,7 +106,7 @@ public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
     /// <param name="name"></param>
     /// <param name="value"></param>
     /// <returns></returns>
-    public CodeBuildActionFactory AddEnvironmentVariable(string name, string value)
+    public CodeBuildActionBuilder AddEnvironmentVariable(string name, string value)
     {
         _buildVariables[name] = new BuildEnvironmentVariable
         {
@@ -122,7 +121,7 @@ public class CodeBuildActionFactory : CdkFactory<CodeBuildAction>
     /// </summary>
     /// <param name="variables"></param>
     /// <returns></returns>
-    public CodeBuildActionFactory AddEnvironmentVariables(IDictionary<string, string> variables)
+    public CodeBuildActionBuilder AddEnvironmentVariables(IDictionary<string, string> variables)
     {
         foreach ((string name, string value) in variables)
         {

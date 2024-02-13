@@ -42,6 +42,11 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
     /// </summary>
     public Dictionary<string, Artifact_> Artifacts { get; } = new();
 
+    /// <summary>
+    ///     Access to the stage builders defined for the pipeline.
+    /// </summary>
+    public IReadOnlyCollection<PipelineStageBuilder> Stages => _stageBuilders.AsReadOnly();
+
     /// <inheritdoc />
     public override Pipeline Construct()
     {
@@ -69,6 +74,17 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
         _stageBuilders.Add(builder);
 
         return builder;
+    }
+
+    /// <summary>
+    ///     Finds a factory for action in given stage.
+    /// </summary>
+    /// <param name="stageName">Stage where to search for action.</param>
+    /// <param name="actionName">Name of the action to be searched.</param>
+    /// <returns></returns>
+    public IActionBuilder GetStageAction(string stageName, string actionName)
+    {
+        return _stageBuilders.First(x => x.StageName == stageName).GetAction(actionName);
     }
 
     /// <summary>
