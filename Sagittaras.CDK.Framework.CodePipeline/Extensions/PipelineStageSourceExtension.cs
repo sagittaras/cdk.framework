@@ -1,3 +1,4 @@
+using Amazon.CDK.AWS.CodePipeline.Actions;
 using Sagittaras.CDK.Framework.CodePipeline.Stages;
 using Sagittaras.CDK.Framework.CodePipeline.Stages.Source;
 
@@ -21,16 +22,36 @@ public static class PipelineStageSourceExtension
     /// <summary>
     /// Adds CodeStar source to the stage.
     /// </summary>
-    /// <param name="builder"></param>
+    /// <param name="stageBuilder"></param>
     /// <param name="sourceName"></param>
     /// <param name="configure"></param>
     /// <returns></returns>
-    public static PipelineStageBuilder UsesCodeStar(this PipelineStageBuilder builder, string sourceName, Action<CodeStarFactory> configure)
+    public static CodeStarConnectionsSourceAction UsesCodeStar(this PipelineStageBuilder stageBuilder, string sourceName, Action<CodeStarBuilder> configure)
     {
-        CodeStarFactory factory = new(builder, sourceName);
-        configure.Invoke(factory);
-        builder.AddAction(factory.Construct());
+        CodeStarBuilder builder = new(stageBuilder, sourceName);
+        configure.Invoke(builder);
 
-        return builder;
+        CodeStarConnectionsSourceAction action = builder.Construct();
+        stageBuilder.AddAction(action);
+
+        return action;
+    }
+
+    /// <summary>
+    /// Adds ECR source to the stage.
+    /// </summary>
+    /// <param name="stageBuilder"></param>
+    /// <param name="sourceName"></param>
+    /// <param name="configure"></param>
+    /// <returns></returns>
+    public static EcrSourceAction UsesEcr(this PipelineStageBuilder stageBuilder, string sourceName, Action<EcrSourceBuilder> configure)
+    {
+        EcrSourceBuilder builder = new(stageBuilder, sourceName);
+        configure.Invoke(builder);
+
+        EcrSourceAction action = builder.Construct();
+        stageBuilder.AddAction(action);
+
+        return action;
     }
 }

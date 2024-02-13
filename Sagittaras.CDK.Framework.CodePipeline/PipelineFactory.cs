@@ -42,6 +42,11 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
     /// </summary>
     public Dictionary<string, Artifact_> Artifacts { get; } = new();
 
+    /// <summary>
+    ///     Access to the stage builders defined for the pipeline.
+    /// </summary>
+    public IReadOnlyCollection<PipelineStageBuilder> Stages => _stageBuilders.AsReadOnly();
+
     /// <inheritdoc />
     public override Pipeline Construct()
     {

@@ -21,6 +21,13 @@ public interface IPipelineStageBuilder : ICdkFactory<IStageProps>
     IPipelineStageBuilder AddAction(IAction action);
 
     /// <summary>
+    ///     Gets factory for the action with the given name.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    IAction GetAction(string name);
+
+    /// <summary>
     /// Uses an artifact with the given name.
     /// </summary>
     /// <param name="name"></param>

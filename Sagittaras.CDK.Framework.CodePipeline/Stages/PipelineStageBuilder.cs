@@ -47,6 +47,7 @@ public class PipelineStageBuilder : CdkFactory<IStageProps>, IPipelineStageBuild
     public override IStageProps Construct()
     {
         _props.Actions = _actions.ToArray();
+
         return _props;
     }
 
@@ -57,8 +58,14 @@ public class PipelineStageBuilder : CdkFactory<IStageProps>, IPipelineStageBuild
         return this;
     }
 
+    /// <inheritdoc />
+    public IAction GetAction(string name)
+    {
+        return _actions.First(x => x.ActionProperties.ActionName == name);
+    }
+
     /// <summary>
-    /// Uses an artifact with the given name.s
+    /// Uses an artifact with the given name.
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>

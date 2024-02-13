@@ -1,5 +1,7 @@
+using System.Linq.Expressions;
 using System.Reflection;
 using Amazon.CDK.Assertions;
+using Sagittaras.CDK.Framework.Props;
 
 namespace Sagittaras.CDK.Testing.Resources;
 
@@ -84,5 +86,61 @@ public abstract class ResourceAssertion<TProperties> : IResourceAssertion<TPrope
     protected void SetProperty(Action<TProperties> props)
     {
         props(GetResourceProperties());
+    }
+
+    /// <summary>
+    ///     Sets the expected value of the property.
+    /// </summary>
+    /// <param name="expression"></param>
+    /// <param name="value"></param>
+    /// <typeparam name="TProperty"></typeparam>
+    public ResourceAssertion<TProperties> SetProperty<TProperty>(Expression<Func<TProperties, TProperty>> expression, TProperty value)
+    {
+        Properties ??= new TProperties();
+        ExpressionMapper.SetValue(expression, Properties, value);
+        return this;
+    }
+
+    /// <summary>
+    ///     Initiates a callback to configure properties of the property group.
+    /// </summary>
+    /// <param name="expression"></param>
+    /// <param name="configure"></param>
+    /// <typeparam name="TProperty"></typeparam>
+    /// <returns></returns>
+    public ResourceAssertion<TProperties> PropertyGroup<TProperty>(Expression<Func<TProperties, TProperty>> expression, Action<TProperty> configure)
+        where TProperty : class, IResourceProperties, new()
+    {
+        Properties ??= new TProperties();
+        TProperty group = GetPropertyGroup(expression, Properties);
+        configure.Invoke(group);
+
+        ExpressionMapper.SetValue(expression, Properties, group);
+
+        return this;
+    }
+
+    /// <summary>
+    ///     Gets an instance of the property group or create a new one.
+    /// </summary>
+    /// <param name="expression"></param>
+    /// <param name="instance"></param>
+    /// <typeparam name="TSource"></typeparam>
+    /// <typeparam name="TPropertyGroup"></typeparam>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    private static TPropertyGroup GetPropertyGroup<TSource, TPropertyGroup>(Expression<Func<TSource, TPropertyGroup>> expression, object instance)
+        where TPropertyGroup : class, IResourceProperties, new()
+    {
+        if (expression.Body is not MemberExpression member)
+        {
+            throw new ArgumentException($"Argument must be {nameof(MemberExpression)}", nameof(expression));
+        }
+
+        TPropertyGroup? group = (TPropertyGroup?)typeof(TSource)
+            .GetProperty(member.Member.Name)?
+            .GetValue(instance);
+
+        return group ?? new TPropertyGroup();
     }
 }
