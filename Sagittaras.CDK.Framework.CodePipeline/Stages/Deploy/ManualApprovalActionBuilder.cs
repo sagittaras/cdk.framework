@@ -20,4 +20,10 @@ public class ManualApprovalActionBuilder : ActionBuilder<ManualApprovalAction>
     {
         return new ManualApprovalAction(_props);
     }
+
+    public ManualApprovalActionBuilder WithInformation(string information)
+    {
+        _props.AdditionalInformation = information;
+        return this;
+    }
 }

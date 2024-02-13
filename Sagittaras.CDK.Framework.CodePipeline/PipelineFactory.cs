@@ -77,17 +77,6 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
     }
 
     /// <summary>
-    ///     Finds a factory for action in given stage.
-    /// </summary>
-    /// <param name="stageName">Stage where to search for action.</param>
-    /// <param name="actionName">Name of the action to be searched.</param>
-    /// <returns></returns>
-    public IActionBuilder GetStageAction(string stageName, string actionName)
-    {
-        return _stageBuilders.First(x => x.StageName == stageName).GetAction(actionName);
-    }
-
-    /// <summary>
     /// Define the artifact with the given name. 
     /// </summary>
     /// <param name="name"></param>

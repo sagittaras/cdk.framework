@@ -1,3 +1,4 @@
+using Amazon.CDK.AWS.CodePipeline.Actions;
 using Sagittaras.CDK.Framework.CodePipeline.Stages;
 using Sagittaras.CDK.Framework.CodePipeline.Stages.Deploy;
 
@@ -23,11 +24,16 @@ public static class PipelineStageDeployExtension
     /// </summary>
     /// <param name="stageBuilder"></param>
     /// <param name="actionName"></param>
-    /// <param name="information"></param>
+    /// <param name="configure"></param>
     /// <returns></returns>
-    public static PipelineStageBuilder UsesManualApproval(this PipelineStageBuilder stageBuilder, string actionName, string? information = null)
+    public static PipelineStageBuilder UsesManualApproval(this PipelineStageBuilder stageBuilder, string actionName, Action<ManualApprovalActionBuilder> configure)
     {
-        stageBuilder.AddAction(new ManualApprovalActionBuilder(stageBuilder, actionName, information));
+        ManualApprovalActionBuilder builder = new(stageBuilder, actionName);
+        configure.Invoke(builder);
+
+        ManualApprovalAction action = builder.Construct();
+        stageBuilder.AddAction(action);
+        
         return stageBuilder;
     }
 
@@ -36,13 +42,17 @@ public static class PipelineStageDeployExtension
     /// </summary>
     /// <param name="stageBuilder"></param>
     /// <param name="actionName"></param>
+    /// <param name="configure"></param>
     /// <returns></returns>
-    public static CloudFormationChangeSetActionBuilder UsesCloudFormationChangeSet(this PipelineStageBuilder stageBuilder, string actionName)
+    public static CloudFormationCreateReplaceChangeSetAction UsesCloudFormationChangeSet(this PipelineStageBuilder stageBuilder, string actionName, Action<CloudFormationChangeSetActionBuilder> configure)
     {
         CloudFormationChangeSetActionBuilder builder = new(stageBuilder, actionName);
-        stageBuilder.AddAction(builder);
+        configure.Invoke(builder);
 
-        return builder;
+        CloudFormationCreateReplaceChangeSetAction action = builder.Construct();
+        stageBuilder.AddAction(action);
+
+        return action;
     }
 
     /// <summary>
@@ -50,12 +60,16 @@ public static class PipelineStageDeployExtension
     /// </summary>
     /// <param name="stageBuilder"></param>
     /// <param name="actionName"></param>
+    /// <param name="configure"></param>
     /// <returns></returns>
-    public static CloudFormationExecuteChangeSetActionBuilder UsesCloudFormationExecuteChangeSet(this PipelineStageBuilder stageBuilder, string actionName)
+    public static CloudFormationExecuteChangeSetAction UsesCloudFormationExecuteChangeSet(this PipelineStageBuilder stageBuilder, string actionName, Action<CloudFormationExecuteChangeSetActionBuilder> configure)
     {
         CloudFormationExecuteChangeSetActionBuilder builder = new(stageBuilder, actionName);
-        stageBuilder.AddAction(builder);
+        configure.Invoke(builder);
 
-        return builder;
+        CloudFormationExecuteChangeSetAction action = builder.Construct();
+        stageBuilder.AddAction(action);
+
+        return action;
     }
 }

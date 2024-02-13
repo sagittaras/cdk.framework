@@ -1,4 +1,5 @@
 using Amazon.CDK.AWS.CodeBuild;
+using Amazon.CDK.AWS.CodePipeline.Actions;
 using Sagittaras.CDK.Framework;
 using Sagittaras.CDK.Framework.CodeBuild;
 using Sagittaras.CDK.Framework.CodePipeline;
@@ -25,21 +26,24 @@ public class PipelineFactoryTest : ConstructTest
         PipelineFactory factory = new(Stack, PipelineName, ArtifactBucket);
 
         PipelineStageBuilder source = factory.HasSourceStage();
-        source.UsesCodeStar("GitHub")
-            .UsesConnection("arn:aws:codestar-connections:eu-west-1:123456789012:connection/12345678-1234-1234-1234-123456789012")
-            .FromRepository("sagittaras", "cdk.framework")
-            .UseBranch("main")
-            .HasOutput(SourceCodeArtifact)
-            ;
+        CodeStarConnectionsSourceAction sourceAction = source.UsesCodeStar("GitHub", x =>
+        {
+            x.UsesConnection("arn:aws:codestar-connections:eu-west-1:123456789012:connection/12345678-1234-1234-1234-123456789012")
+                .FromRepository("sagittaras", "cdk.framework")
+                .UseBranch("main")
+                .HasOutput(SourceCodeArtifact)
+                ;
+        });
 
         PipelineStageBuilder build = factory.HasBuildStage();
-        build.UsesCodeBuild("Build")
-            .UsesProject(ConstructCodeBuildProject())
-            .UsesInputArtifact(SourceCodeArtifact)
-            ;
+        build.UsesCodeBuild("Build", x =>
+        {
+            x.UsesProject(ConstructCodeBuildProject())
+                .UsesInputArtifact(SourceCodeArtifact)
+                .AddEnvironmentVariable("COMMIT_ID", sourceAction.Variables.CommitId)
+                ;
+        });
 
-        _ = factory.GetStageAction("Source", "GitHub");
-        
         factory.Construct();
 
         new PipelineAssertion()
