@@ -40,6 +40,11 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
     private Dictionary<string, string> EnvironmentVariables { get; } = new();
 
     /// <summary>
+    /// Dictionary containing the selection of subnets for the function.
+    /// </summary>
+    private Dictionary<string, string> SubnetsSelection { get; } = new();
+
+    /// <summary>
     /// Maps the <see cref="Options"/> used as storage of common attributes to the props.
     /// </summary>
     /// <param name="props"></param>
@@ -53,6 +58,17 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
         if (SecurityGroups.Any())
         {
             Options.SecurityGroups = SecurityGroups.ToArray();
+        }
+
+        if (SubnetsSelection.Any())
+        {
+            Options.VpcSubnets = new SubnetSelection
+            {
+                Subnets = SubnetsSelection.Select(pair => Subnet.FromSubnetAttributes(this, pair.Key, new SubnetAttributes
+                {
+                    SubnetId = pair.Value
+                })).ToArray()
+            };
         }
 
         PropsMapper.Map(Options, props);
@@ -116,25 +132,25 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
     /// <summary>
     ///     Configures the Lambda function to use the default VPC.
     /// </summary>
-    /// <param name="subnetIds">IDs of subnets to which the Lambda function should be connected.</param>
     /// <returns></returns>
-    public LambdaFactory<TFunction, TProps> ConnectToDefaultVpc(params string[] subnetIds)
+    public LambdaFactory<TFunction, TProps> ConnectToDefaultVpc()
     {
         Options.Vpc = Vpc.FromLookup(this, "default-vpc", new VpcLookupOptions
         {
             IsDefault = true
         });
+        return this;
+    }
 
-        if (!subnetIds.Any()) return this;
-
-        Options.VpcSubnets = new SubnetSelection
-        {
-            Subnets = subnetIds.Select(subnetId => Subnet.FromSubnetAttributes(this, subnetId, new SubnetAttributes
-            {
-                SubnetId = subnetId
-            })).ToArray()
-        };
-
+    /// <summary>
+    /// Assign a Lambda function to the VPC subnet through lookup discovery of the subnet resource.
+    /// </summary>
+    /// <param name="resourceId">Unique ID assigned to the subnet resource.</param>
+    /// <param name="subnetLookupId">ID of the Subnet through the resource can be discovered.</param>
+    /// <returns></returns>
+    public LambdaFactory<TFunction, TProps> AddToSubnet(string resourceId, string subnetLookupId)
+    {
+        SubnetsSelection[resourceId] = subnetLookupId;
         return this;
     }
 
@@ -165,11 +181,12 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
     /// <summary>
     /// Adds a security group created by lookup from its ID.
     /// </summary>
-    /// <param name="groupId"></param>
+    /// <param name="resourceId">Custom ID to recognize the resource.</param>
+    /// <param name="groupLookupId">ID of the group through which can be discovered.</param>
     /// <returns></returns>
-    public LambdaFactory<TFunction, TProps> AddSecurityGroup(string groupId)
+    public LambdaFactory<TFunction, TProps> AddSecurityGroup(string resourceId, string groupLookupId)
     {
-        SecurityGroups.Add(SecurityGroup.FromSecurityGroupId(this, groupId, groupId));
+        SecurityGroups.Add(SecurityGroup.FromSecurityGroupId(this, resourceId, groupLookupId));
         return this;
     }
 }
