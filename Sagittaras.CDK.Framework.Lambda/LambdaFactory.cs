@@ -30,6 +30,11 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
     private FunctionOptions Options { get; }
 
     /// <summary>
+    /// List of security groups to which the lambda should be assigned.
+    /// </summary>
+    private List<ISecurityGroup> SecurityGroups { get; } = new();
+
+    /// <summary>
     /// Environment variables to be set for the function.
     /// </summary>
     private Dictionary<string, string> EnvironmentVariables { get; } = new();
@@ -43,6 +48,11 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
         if (EnvironmentVariables.Any())
         {
             Options.Environment = EnvironmentVariables;
+        }
+
+        if (SecurityGroups.Any())
+        {
+            Options.SecurityGroups = SecurityGroups.ToArray();
         }
 
         PropsMapper.Map(Options, props);
@@ -138,6 +148,28 @@ public abstract class LambdaFactory<TFunction, TProps> : ConstructFactory<TFunct
     public LambdaFactory<TFunction, TProps> AllowPublicSubnet()
     {
         Options.AllowPublicSubnet = true;
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a security group for the lambda function.
+    /// </summary>
+    /// <param name="group"></param>
+    /// <returns></returns>
+    public LambdaFactory<TFunction, TProps> AddSecurityGroup(ISecurityGroup group)
+    {
+        SecurityGroups.Add(group);
+        return this;
+    }
+
+    /// <summary>
+    /// Adds a security group created by lookup from its ID.
+    /// </summary>
+    /// <param name="groupId"></param>
+    /// <returns></returns>
+    public LambdaFactory<TFunction, TProps> AddSecurityGroup(string groupId)
+    {
+        SecurityGroups.Add(SecurityGroup.FromSecurityGroupId(this, groupId, groupId));
         return this;
     }
 }
