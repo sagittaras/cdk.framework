@@ -10,7 +10,7 @@ public class S3SourceBuilder : ActionBuilder<S3SourceAction>
 {
     private readonly PipelineStageBuilder _builder;
     private readonly S3SourceActionProps _props;
-    
+
     public S3SourceBuilder(PipelineStageBuilder builder, string name) : base(builder, name)
     {
         _builder = builder;
@@ -25,7 +25,7 @@ public class S3SourceBuilder : ActionBuilder<S3SourceAction>
     {
         return new S3SourceAction(_props);
     }
-    
+
     /// <summary>
     /// Uses the bucket and the object key to define the source action.
     /// </summary>
@@ -41,7 +41,7 @@ public class S3SourceBuilder : ActionBuilder<S3SourceAction>
         _props.BucketKey = objectKey;
         return this;
     }
-    
+
     /// <summary>
     /// Uses the bucket and the object key to define the source action.
     /// </summary>
@@ -79,6 +79,17 @@ public class S3SourceBuilder : ActionBuilder<S3SourceAction>
     public S3SourceBuilder HasOutput(string name)
     {
         _props.Output = UseArtifact(name);
+        return this;
+    }
+
+    /// <summary>
+    /// What kind of trigger is used for the S3 source action.
+    /// </summary>
+    /// <param name="trigger"></param>
+    /// <returns></returns>
+    public S3SourceBuilder UseTrigger(S3Trigger trigger)
+    {
+        _props.Trigger = trigger;
         return this;
     }
 }
