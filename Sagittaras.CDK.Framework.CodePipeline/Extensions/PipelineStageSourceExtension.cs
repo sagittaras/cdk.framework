@@ -54,4 +54,22 @@ public static class PipelineStageSourceExtension
 
         return action;
     }
+    
+    /// <summary>
+    /// Adds S3 source to the stage.
+    /// </summary>
+    /// <param name="stageBuilder"></param>
+    /// <param name="sourceName"></param>
+    /// <param name="configure"></param>
+    /// <returns></returns>
+    public static S3SourceAction UsesS3Source(this PipelineStageBuilder stageBuilder, string sourceName, Action<S3SourceBuilder> configure)
+    {
+        S3SourceBuilder builder = new(stageBuilder, sourceName);
+        configure.Invoke(builder);
+
+        S3SourceAction action = builder.Construct();
+        stageBuilder.AddAction(action);
+
+        return action;
+    }
 }

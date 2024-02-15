@@ -72,4 +72,22 @@ public static class PipelineStageDeployExtension
 
         return action;
     }
+
+    /// <summary>
+    /// Adds a deploy action that will deploy the artifacts to the S3 bucket.
+    /// </summary>
+    /// <param name="stageBuilder"></param>
+    /// <param name="actionName"></param>
+    /// <param name="configure"></param>
+    /// <returns></returns>
+    public static S3DeployAction UsesS3Deploy(this PipelineStageBuilder stageBuilder, string actionName, Action<S3DeployBuilder> configure)
+    {
+        S3DeployBuilder builder = new(stageBuilder, actionName);
+        configure.Invoke(builder);
+
+        S3DeployAction action = builder.Construct();
+        stageBuilder.AddAction(action);
+
+        return action;
+    }
 }
