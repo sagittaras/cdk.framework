@@ -15,6 +15,7 @@ public class AmplifyBuildSpecFactory : BuildSpecFactory, IAmplifyBuildSpecFactor
     {
         RegisterSection<IEnvironmentSection, EnvironmentSection>();
         RegisterSection<IFrontendSection, FrontendSection>();
+        RegisterSection<ITestSection, TestSection>();
     }
 
     /// <inheritdoc />
@@ -22,4 +23,31 @@ public class AmplifyBuildSpecFactory : BuildSpecFactory, IAmplifyBuildSpecFactor
 
     /// <inheritdoc />
     public IFrontendSection Frontend => GetRequiredSection<IFrontendSection>();
+
+    /// <inheritdoc />
+    public ITestSection Test => GetRequiredSection<ITestSection>();
+
+    /// <summary>
+    /// Configures the selected frontend phase.
+    /// </summary>
+    /// <param name="phase"></param>
+    /// <param name="configure"></param>
+    /// <returns></returns>
+    public AmplifyBuildSpecFactory FrontendPhase(BuildPhase phase, Action<IBuildPhaseSection> configure)
+    {
+        configure.Invoke(Frontend.Phases.Phase(phase));
+        return this;
+    }
+
+    /// <summary>
+    /// Configures the selected test phase.
+    /// </summary>
+    /// <param name="phase"></param>
+    /// <param name="configure"></param>
+    /// <returns></returns>
+    public AmplifyBuildSpecFactory TestPhase(TestPhase phase, Action<ITestPhaseSection> configure)
+    {
+        configure.Invoke(Test.Phase(phase));
+        return this;
+    }
 }

@@ -11,7 +11,7 @@ public class PhasesSection : IPhasesSection
     /// <summary>
     /// Dictionary of defined phases.
     /// </summary>
-    private readonly Dictionary<BuildPhase, IBuildPhaseSection> _phases = new();
+    private readonly Dictionary<BuildPhase, IBuildPhaseSection> _describedPhases = new();
 
     /// <summary>
     /// Translations of the enum values to the section names.
@@ -41,7 +41,7 @@ public class PhasesSection : IPhasesSection
     public IDictionary<string, object> ToDictionary()
     {
         Dictionary<string, object> dict = new();
-        foreach (IBuildPhaseSection section in _phases.Values)
+        foreach (IBuildPhaseSection section in _describedPhases.Values)
         {
             dict.Add(section.SectionName, section.ToDictionary());
         }
@@ -52,13 +52,13 @@ public class PhasesSection : IPhasesSection
     /// <inheritdoc />
     public virtual IBuildPhaseSection Phase(BuildPhase phase)
     {
-        if (_phases.TryGetValue(phase, out IBuildPhaseSection? section))
+        if (_describedPhases.TryGetValue(phase, out IBuildPhaseSection? section))
         {
             return section;
         }
 
         section = new BuildPhaseSection(_phaseSectionName[phase]);
-        _phases.Add(phase, section);
+        _describedPhases.Add(phase, section);
 
         return section;
     }
