@@ -37,6 +37,22 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
     /// </summary>
     /// <param name="scope"></param>
     /// <param name="pipelineName"></param>
+    /// <param name="artifactBucket"></param>
+    public PipelineFactory(Construct scope, string pipelineName, IBucket artifactBucket) : base(scope, pipelineName)
+    {
+        Props = new PipelineProps
+        {
+            PipelineName = Cloudspace.ResourceName(pipelineName),
+            RestartExecutionOnUpdate = true,
+            ArtifactBucket = artifactBucket
+        };
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="scope"></param>
+    /// <param name="pipelineName"></param>
     public PipelineFactory(Construct scope, string pipelineName) : base(scope, pipelineName)
     {
         Props = new PipelineProps
