@@ -24,7 +24,7 @@ public class CodeBuildSpecFactory : BuildSpecFactory, ICodeBuildSpecFactory
     public IEnvironmentSection Environment => GetRequiredSection<IEnvironmentSection>();
 
     /// <inheritdoc />
-    public virtual IPhasesSection Phases => GetRequiredSection<IPhasesSection>();
+    public IPhasesSection Phases => GetRequiredSection<IPhasesSection>();
 
     /// <inheritdoc />
     public IArtifactsSection Artifacts => GetRequiredSection<IArtifactsSection>();
