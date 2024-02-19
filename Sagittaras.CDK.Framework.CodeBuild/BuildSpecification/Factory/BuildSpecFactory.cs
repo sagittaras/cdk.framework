@@ -1,38 +1,32 @@
 using Amazon.CDK.AWS.CodeBuild;
 using Sagittaras.CDK.Framework.CodeBuild.BuildSpecification.Abstraction;
-using Sagittaras.CDK.Framework.CodeBuild.BuildSpecification.Factory.Sections;
-using Sagittaras.CDK.Framework.CodeBuild.Extensions;
 
 namespace Sagittaras.CDK.Framework.CodeBuild.BuildSpecification.Factory;
 
-/// <summary>
-/// Implementation of <see cref="IBuildSpecSection"/> allowing common definition of the BuildSpec.
-/// </summary>
-public class BuildSpecFactory : IBuildSpecFactory
+public abstract class BuildSpecFactory : IBuildSpecFactory
 {
     /// <summary>
-    /// Number of version of the buildspec file.
+    /// Contains instances of currently described sections.
     /// </summary>
-    private double _version = 0.2;
+    /// <remarks>
+    /// If the section wasn't described, it's not included in the dictionary and thus not included in the
+    /// final BuildSpec.
+    /// </remarks>
+    private readonly Dictionary<Type, IBuildSpecSection> _describedSections = new();
 
     /// <summary>
-    /// Dictionary containing common sections of the BuildSpec file.
+    /// Contains types of sections that can be described by the build spec.
     /// </summary>
-    private readonly Dictionary<Type, IBuildSpecSection> _sections = new();
+    /// <remarks>
+    /// Works like a factory for the sections.
+    /// </remarks>
+    private readonly Dictionary<Type, Type> _availableSections = new();
 
-    /// <inheritdoc />
-    public IEnvironmentSection Environment => GetOrCreateSection<IEnvironmentSection>(() => new EnvironmentSection());
+    /// <summary>
+    /// Number of build spec's version.
+    /// </summary>
+    private double _version = 0;
 
-    /// <inheritdoc />
-    public IPhasesSection Phases => GetOrCreateSection<IPhasesSection>(() => new PhasesSection());
-
-    /// <inheritdoc />
-    public IArtifactsSection Artifacts => GetOrCreateSection<IArtifactsSection>(() => new ArtifactsSection());
-
-    /// <inheritdoc />
-    public ICacheSection Cache => GetOrCreateSection<ICacheSection>(() => new CacheSection());
-
-    /// <inheritdoc />
     public IBuildSpecFactory Version(double version)
     {
         _version = version;
@@ -51,37 +45,40 @@ public class BuildSpecFactory : IBuildSpecFactory
         return BuildSpec.FromObject(ToDictionary());
     }
 
-    /// <inheritdoc />
-    public virtual void ConfigureProjectPolicies(IProject project)
+    /// <summary>
+    /// Registers a new section that is available under the specified type.
+    /// </summary>
+    /// <typeparam name="TImplementation"></typeparam>
+    /// <typeparam name="TRealization"></typeparam>
+    protected void RegisterSection<TImplementation, TRealization>()
+        where TImplementation : IBuildSpecSection
+        where TRealization : class, TImplementation, new()
     {
-        // If the project has environment section, allow read to all secrets defined in the section.
-        if (GetSection<IEnvironmentSection>() is { } env && env.Secrets.Any())
-        {
-            project.AddSecretsAccess(env.Secrets.ToArray());
-        }
+        _availableSections[typeof(TImplementation)] = typeof(TRealization);
     }
 
     /// <summary>
-    /// Requests the section of the BuildSpec for further definition.
+    /// Gets instance of the section. If not available, it's created.
     /// </summary>
-    /// <remarks>
-    /// If the section does not exists yet, it will be created.
-    /// </remarks>
-    /// <param name="createCallback">Callback in which the section class can be created if the section does not exists yet.</param>
     /// <typeparam name="TSection"></typeparam>
     /// <returns></returns>
-    private TSection GetOrCreateSection<TSection>(Func<TSection> createCallback)
+    protected TSection GetRequiredSection<TSection>()
         where TSection : IBuildSpecSection
     {
-        Type sectionType = typeof(TSection);
+        Type type = typeof(TSection);
 
-        if (_sections.TryGetValue(sectionType, out IBuildSpecSection? section))
+        if (_describedSections.TryGetValue(type, out IBuildSpecSection? section))
         {
             return (TSection)section;
         }
 
-        section = createCallback.Invoke();
-        _sections.Add(sectionType, section);
+        if (!_availableSections.TryGetValue(type, out Type? realization))
+        {
+            throw new InvalidOperationException($"The section {type.Name} is not available.");
+        }
+
+        section = (TSection)Activator.CreateInstance(realization)!;
+        _describedSections[type] = section;
 
         return (TSection)section;
     }
@@ -91,12 +88,12 @@ public class BuildSpecFactory : IBuildSpecFactory
     /// </summary>
     /// <typeparam name="TSection"></typeparam>
     /// <returns></returns>
-    private TSection? GetSection<TSection>()
+    protected TSection? GetSection<TSection>()
         where TSection : IBuildSpecSection
     {
         Type sectionType = typeof(TSection);
 
-        if (_sections.TryGetValue(sectionType, out IBuildSpecSection? section))
+        if (_describedSections.TryGetValue(sectionType, out IBuildSpecSection? section))
         {
             return (TSection)section;
         }
@@ -115,7 +112,7 @@ public class BuildSpecFactory : IBuildSpecFactory
             { "version", _version }
         };
 
-        foreach (IBuildSpecSection section in _sections.Values)
+        foreach (IBuildSpecSection section in _describedSections.Values)
         {
             buildSpec.Add(section.SectionName, section.ToDictionary());
         }

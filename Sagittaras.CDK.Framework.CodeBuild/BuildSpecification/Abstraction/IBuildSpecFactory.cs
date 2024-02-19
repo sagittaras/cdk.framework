@@ -13,29 +13,6 @@ namespace Sagittaras.CDK.Framework.CodeBuild.BuildSpecification.Abstraction;
 public interface IBuildSpecFactory
 {
     /// <summary>
-    /// Gets an environment section of the BuildSpec for further definition.
-    /// </summary>
-    /// <returns></returns>
-    IEnvironmentSection Environment { get; }
-
-    /// <summary>
-    /// Gets a section describing available phases of the BuildSpec for further definition.
-    /// </summary>
-    IPhasesSection Phases { get; }
-
-    /// <summary>
-    /// Gets an artifacts section of the BuildSpec for further definition.
-    /// </summary>
-    /// <returns></returns>
-    IArtifactsSection Artifacts { get; }
-
-    /// <summary>
-    /// Gets an cache section of the BuildSpec for further definition.
-    /// </summary>
-    /// <returns></returns>
-    ICacheSection Cache { get; }
-
-    /// <summary>
     /// Specifies the version of the buildspec.
     /// </summary>
     IBuildSpecFactory Version(double version);
@@ -51,11 +28,4 @@ public interface IBuildSpecFactory
     /// </summary>
     /// <returns></returns>
     BuildSpec ToBuildSpecJson();
-
-    /// <summary>
-    /// Helps to determine additional policies for the project, required
-    /// by the BuildSpec.
-    /// </summary>
-    /// <param name="project"></param>
-    void ConfigureProjectPolicies(IProject project);
 }

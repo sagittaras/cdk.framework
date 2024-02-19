@@ -48,7 +48,7 @@ public class BuildPhaseSection : IBuildPhaseSection
     }
 
     /// <inheritdoc />
-    public IBuildPhaseSection OnFailure(FailureBehaviour failureBehaviour)
+    public virtual IBuildPhaseSection OnFailure(FailureBehaviour failureBehaviour)
     {
         _failureBehaviour = failureBehaviour;
         return this;
@@ -62,7 +62,7 @@ public class BuildPhaseSection : IBuildPhaseSection
     }
 
     /// <inheritdoc />
-    public IBuildPhaseSection Finally(string command)
+    public virtual IBuildPhaseSection Finally(string command)
     {
         _finally.Add(command);
         return this;

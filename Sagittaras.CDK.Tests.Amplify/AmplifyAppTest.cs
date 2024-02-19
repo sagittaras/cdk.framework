@@ -28,10 +28,7 @@ public class AmplifyAppTest : ConstructTest
     {
         new AmplifyFactory(Stack, AppName)
             .FromGitHub("sagittaras", "website", SecretValue.SecretsManager("arn:aws:secretsmanager:eu-central-1"))
-            .AddBranch("main", new BranchOptions
-            {
-                BranchName = "main"
-            })
+            .AddBranch("main")
             .Construct();
 
         Template template = StackTemplate;
@@ -60,15 +57,14 @@ public class AmplifyAppTest : ConstructTest
     public void Test_DomainAssignment()
     {
         AmplifyFactory factory = new AmplifyFactory(Stack, AppName)
-            .FromGitHub("sagittaras", "website", SecretValue.SecretsManager("arn:aws:secretsmanager:eu-central-1"))
-            .AddBranch("main", new BranchOptions
-            {
-                BranchName = "main"
-            });
-
-        factory.AddDomain("example.com")
-            .AddSubDomain(string.Empty, "main")
-            .AddSubDomain("www", "main")
+                .FromGitHub("sagittaras", "website", SecretValue.SecretsManager("arn:aws:secretsmanager:eu-central-1"))
+                .AddBranch("main")
+                .AddDomain("example.com", x =>
+                {
+                    x.AddSubDomain(string.Empty, "main")
+                        .AddSubDomain("www", "main")
+                        ;
+                })
             ;
 
         factory.Construct();

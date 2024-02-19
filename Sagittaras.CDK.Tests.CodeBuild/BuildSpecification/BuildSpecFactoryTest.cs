@@ -12,8 +12,8 @@ public class BuildSpecFactoryTest
     [Fact(Skip = "JSII weird behaviour on host machine.")]
     public void Test_BasicTranslate()
     {
-        BuildSpecFactory factory = new();
-        factory.Phases.BuildPhase(BuildPhase.Build)
+        CodeBuildSpecFactory factory = new();
+        factory.Phases.Phase(BuildPhase.Build)
             .Command("echo \"Hello, World!\"");
 
         string spec = factory.ToBuildSpecYaml().ToBuildSpec();

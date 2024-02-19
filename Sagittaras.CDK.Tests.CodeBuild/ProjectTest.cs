@@ -19,12 +19,12 @@ public class ProjectTest : ConstructTest
     /// <summary>
     /// Default buildspec for the project.
     /// </summary>
-    private BuildSpecFactory DefaultSpec
+    private CodeBuildSpecFactory DefaultSpec
     {
         get
         {
-            BuildSpecFactory factory = new();
-            factory.Phases.BuildPhase(BuildPhase.Build)
+            CodeBuildSpecFactory factory = new();
+            factory.Phases.Phase(BuildPhase.Build)
                 .Command("echo \"Hello world!\"");
 
             return factory;

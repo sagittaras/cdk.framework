@@ -23,7 +23,7 @@ public class CodeBuildFactory : ConstructFactory<Project, ProjectProps>
     /// <summary>
     /// Factory used to generate the buildspec.
     /// </summary>
-    private IBuildSpecFactory? _buildSpecFactory;
+    private ICodeBuildSpecFactory? _buildSpecFactory;
 
     public CodeBuildFactory(Construct scope, string projectName) : base(scope, projectName)
     {
@@ -124,7 +124,7 @@ public class CodeBuildFactory : ConstructFactory<Project, ProjectProps>
     /// <typeparam name="TBuildSpecFactory"></typeparam>
     /// <returns></returns>
     public CodeBuildFactory UsesBuildSpec<TBuildSpecFactory>(Action<TBuildSpecFactory>? configure = null)
-        where TBuildSpecFactory : IBuildSpecFactory, new()
+        where TBuildSpecFactory : ICodeBuildSpecFactory, new()
     {
         _buildSpecFactory = new TBuildSpecFactory();
         configure?.Invoke((TBuildSpecFactory)_buildSpecFactory);
@@ -140,7 +140,7 @@ public class CodeBuildFactory : ConstructFactory<Project, ProjectProps>
     /// <typeparam name="TBuildSpecFactory"></typeparam>
     /// <returns></returns>
     public CodeBuildFactory UsesBuildSpec<TBuildSpecFactory>(TBuildSpecFactory factory)
-        where TBuildSpecFactory : IBuildSpecFactory
+        where TBuildSpecFactory : ICodeBuildSpecFactory
     {
         _buildSpecFactory = factory;
         Props.BuildSpec = factory.ToBuildSpecYaml();
