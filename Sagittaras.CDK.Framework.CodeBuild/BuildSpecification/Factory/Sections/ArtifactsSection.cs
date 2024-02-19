@@ -19,7 +19,7 @@ public class ArtifactsSection : IArtifactsSection
 
     /// <inheritdoc />
     public string SectionName => "artifacts";
-    
+
     /// <summary>
     /// Key used for the base directory.
     /// </summary>

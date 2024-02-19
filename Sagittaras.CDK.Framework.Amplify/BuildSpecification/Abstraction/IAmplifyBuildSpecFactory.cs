@@ -8,12 +8,12 @@ public interface IAmplifyBuildSpecFactory : IBuildSpecFactory
     /// Access to the environment section of the build spec.
     /// </summary>
     IEnvironmentSection Environment { get; }
-    
+
     /// <summary>
     /// Access to the frontend configuration.
     /// </summary>
     IFrontendSection Frontend { get; }
-    
+
     /// <summary>
     /// Access to the test phase of the build spec.
     /// </summary>

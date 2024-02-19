@@ -11,7 +11,7 @@ public interface ITestSection : IBuildSpecSection
     /// Access to the artifacts section.
     /// </summary>
     IArtifactsSection Artifacts { get; }
-    
+
     /// <summary>
     /// Gets the phase this section is describing.
     /// </summary>

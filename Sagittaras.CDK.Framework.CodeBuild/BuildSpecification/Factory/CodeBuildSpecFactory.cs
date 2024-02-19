@@ -13,7 +13,7 @@ public class CodeBuildSpecFactory : BuildSpecFactory, ICodeBuildSpecFactory
     public CodeBuildSpecFactory()
     {
         Version(0.2);
-        
+
         RegisterSection<IEnvironmentSection, EnvironmentSection>();
         RegisterSection<IPhasesSection, PhasesSection>();
         RegisterSection<IArtifactsSection, ArtifactsSection>();
@@ -31,7 +31,7 @@ public class CodeBuildSpecFactory : BuildSpecFactory, ICodeBuildSpecFactory
 
     /// <inheritdoc />
     public ICacheSection Cache => GetRequiredSection<ICacheSection>();
-    
+
     /// <inheritdoc />
     public virtual void ConfigureProjectPolicies(IProject project)
     {

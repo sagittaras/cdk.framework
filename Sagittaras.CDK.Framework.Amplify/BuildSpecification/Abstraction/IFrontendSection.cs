@@ -11,12 +11,12 @@ public interface IFrontendSection : IBuildSpecSection
     /// Describes the phases of the frontend.
     /// </summary>
     IPhasesSection Phases { get; }
-    
+
     /// <summary>
     /// Describes the frontend artifacts.
     /// </summary>
     IArtifactsSection Artifacts { get; }
-    
+
     /// <summary>
     /// Describes the cached frontend resources.
     /// </summary>

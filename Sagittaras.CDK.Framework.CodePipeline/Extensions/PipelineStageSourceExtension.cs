@@ -54,7 +54,7 @@ public static class PipelineStageSourceExtension
 
         return action;
     }
-    
+
     /// <summary>
     /// Adds S3 source to the stage.
     /// </summary>
