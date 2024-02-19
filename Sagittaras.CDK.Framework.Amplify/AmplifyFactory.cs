@@ -127,7 +127,7 @@ public class AmplifyFactory : ConstructFactory<App, AppProps>
         BranchFactory factory = new(branchName);
         Branches.Add(branchName, factory);
         configure?.Invoke(factory);
-        
+
         return this;
     }
 
