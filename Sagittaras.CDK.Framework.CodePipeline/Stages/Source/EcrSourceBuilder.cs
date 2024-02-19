@@ -36,6 +36,9 @@ public class EcrSourceBuilder : ActionBuilder<EcrSourceAction>
     /// <summary>
     ///     Reference the ECR repository used as the source by its name.
     /// </summary>
+    /// <remarks>
+    ///     If the repository is on different account, use <see cref="FromRepositoryAttributes"/> or <see cref="FromRepositoryByArn"/> instead.
+    /// </remarks>
     /// <param name="repositoryName"></param>
     /// <returns></returns>
     public EcrSourceBuilder FromRepository(string repositoryName)
@@ -52,6 +55,31 @@ public class EcrSourceBuilder : ActionBuilder<EcrSourceAction>
     public EcrSourceBuilder FromRepository(IRepository repository)
     {
         _props.Repository = repository;
+        return this;
+    }
+
+    /// <summary>
+    ///     Reference the ECR repository used as the source by its ARN.
+    /// </summary>
+    /// <remarks>
+    ///     If the ARN is late-bound value (token), use <see cref="FromRepositoryAttributes"/> instead.
+    /// </remarks>
+    /// <param name="repositoryArn"></param>
+    /// <returns></returns>
+    public EcrSourceBuilder FromRepositoryByArn(string repositoryArn)
+    {
+        _props.Repository = Repository.FromRepositoryArn(_builder, "source-repository", repositoryArn);
+        return this;
+    }
+
+    /// <summary>
+    ///     Reference the ECR repository used as the source by its attributes.
+    /// </summary>
+    /// <param name="repositoryAttributes"></param>
+    /// <returns></returns>
+    public EcrSourceBuilder FromRepositoryAttributes(IRepositoryAttributes repositoryAttributes)
+    {
+        _props.Repository = Repository.FromRepositoryAttributes(_builder, "source-repository", repositoryAttributes);
         return this;
     }
 
