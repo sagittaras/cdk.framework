@@ -19,16 +19,6 @@ public class AmplifyFactory : ConstructFactory<App, AppProps>
     /// </summary>
     private readonly Dictionary<string, string> _envVariables = new();
 
-    /// <summary>
-    /// Branches definition for the Amplify App.
-    /// </summary>
-    private readonly Dictionary<string, BranchOptions> _branches = new();
-
-    /// <summary>
-    /// Custom domains assigned to the application.
-    /// </summary>
-    private readonly List<DomainFactory> _domains = new();
-
     public AmplifyFactory(Construct scope, string appName) : base(scope, appName)
     {
         Props = new AppProps
@@ -55,6 +45,16 @@ public class AmplifyFactory : ConstructFactory<App, AppProps>
     /// <inheritdoc />
     public override AppProps Props { get; }
 
+    /// <summary>
+    /// Described branches that will be assigned to the application once constructed.
+    /// </summary>
+    public Dictionary<string, BranchFactory> Branches { get; } = new();
+
+    /// <summary>
+    /// Description of the domains that will be assigned to the application once constructed.
+    /// </summary>
+    public List<DomainFactory> Domains { get; } = new();
+
     /// <inheritdoc />
     public override App Construct()
     {
@@ -63,12 +63,12 @@ public class AmplifyFactory : ConstructFactory<App, AppProps>
 
         // Assign created branches to dictionary for binding domains to the branches.
         Dictionary<string, Branch> existingBranches = new();
-        foreach ((string branch, BranchOptions options) in _branches)
+        foreach ((string branch, BranchFactory factory) in Branches)
         {
-            existingBranches.Add(branch, app.AddBranch(branch, options));
+            existingBranches.Add(branch, app.AddBranch(branch, factory.Construct()));
         }
 
-        foreach (DomainFactory factory in _domains)
+        foreach (DomainFactory factory in Domains)
         {
             app.AddDomain(factory.DomainName.ToResourceId(), factory.Construct(existingBranches));
         }
@@ -120,11 +120,14 @@ public class AmplifyFactory : ConstructFactory<App, AppProps>
     /// Adds a new branch definition for the application.
     /// </summary>
     /// <param name="branchName"></param>
-    /// <param name="options"></param>
+    /// <param name="configure"></param>
     /// <returns></returns>
-    public AmplifyFactory AddBranch(string branchName, BranchOptions options)
+    public AmplifyFactory AddBranch(string branchName, Action<BranchFactory>? configure = null)
     {
-        _branches.Add(branchName, options);
+        BranchFactory factory = new(branchName);
+        Branches.Add(branchName, factory);
+        configure?.Invoke(factory);
+        
         return this;
     }
 
@@ -132,13 +135,15 @@ public class AmplifyFactory : ConstructFactory<App, AppProps>
     /// Adds a new custom domain to the application.
     /// </summary>
     /// <param name="domainName"></param>
+    /// <param name="configure">Callback to configure the domain.</param>
     /// <returns></returns>
-    public DomainFactory AddDomain(string domainName)
+    public AmplifyFactory AddDomain(string domainName, Action<DomainFactory>? configure = null)
     {
-        DomainFactory domain = new(domainName);
-        _domains.Add(domain);
+        DomainFactory factory = new(domainName);
+        Domains.Add(factory);
+        configure?.Invoke(factory);
 
-        return domain;
+        return this;
     }
 
     /// <summary>
