@@ -13,6 +13,8 @@ public class AmplifyBuildSpecFactory : BuildSpecFactory, IAmplifyBuildSpecFactor
 {
     public AmplifyBuildSpecFactory()
     {
+        Version(1);
+
         RegisterSection<IEnvironmentSection, EnvironmentSection>();
         RegisterSection<IFrontendSection, FrontendSection>();
         RegisterSection<ITestSection, TestSection>();
