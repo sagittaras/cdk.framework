@@ -33,6 +33,20 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="scope"></param>
+    /// <param name="pipelineName"></param>
+    public PipelineFactory(Construct scope, string pipelineName) : base(scope, pipelineName)
+    {
+        Props = new PipelineProps
+        {
+            PipelineName = Cloudspace.ResourceName(pipelineName),
+            RestartExecutionOnUpdate = true
+        };
+    }
+
+    /// <summary>
     /// Props used to define the pipeline.
     /// </summary>
     public override PipelineProps Props { get; }
