@@ -10,5 +10,5 @@ public interface IPhasesSection : IBuildSpecSection
     /// </summary>
     /// <param name="phase"></param>
     /// <returns></returns>
-    IBuildPhaseSection BuildPhase(BuildPhase phase);
+    IBuildPhaseSection Phase(BuildPhase phase);
 }

@@ -19,13 +19,18 @@ public class ArtifactsSection : IArtifactsSection
 
     /// <inheritdoc />
     public string SectionName => "artifacts";
+    
+    /// <summary>
+    /// Key used for the base directory.
+    /// </summary>
+    protected virtual string BaseDirectoryKey => "base-directory";
 
     /// <inheritdoc />
     public IDictionary<string, object> ToDictionary()
     {
         return new Dictionary<string, object>
         {
-            { "base-directory", _baseDirectory },
+            { BaseDirectoryKey, _baseDirectory },
             { "files", _files.ToArray() }
         };
     }

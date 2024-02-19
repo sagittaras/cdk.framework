@@ -6,11 +6,11 @@ namespace Sagittaras.CDK.Tests.CodePipeline;
 /// <summary>
 ///     The most basic build spec which can be used for testing purposes.
 /// </summary>
-public class BasicBuildSpecFactory : BuildSpecFactory
+public class BasicBuildSpecFactory : CodeBuildSpecFactory
 {
     public BasicBuildSpecFactory()
     {
-        Phases.BuildPhase(BuildPhase.Build)
+        Phases.Phase(BuildPhase.Build)
             .Command("echo \"Hello, World!\"")
             ;
     }

@@ -1,7 +1,7 @@
 using Amazon.CDK;
 using Amazon.CDK.AWS.Amplify.Alpha;
 using Constructs;
-using Sagittaras.CDK.Framework.Amplify.Buildspecs;
+using Sagittaras.CDK.Framework.Amplify.BuildSpecification.Abstraction;
 using Sagittaras.CDK.Framework.Extensions;
 using Sagittaras.CDK.Framework.Factory;
 using App = Amazon.CDK.AWS.Amplify.Alpha.App;
@@ -146,9 +146,9 @@ public class AmplifyFactory : ConstructFactory<App, AppProps>
     /// </summary>
     /// <typeparam name="TBuildSpecFactory"></typeparam>
     /// <returns></returns>
-    public AmplifyFactory UsesBuildSpec<TBuildSpecFactory>() where TBuildSpecFactory : IAmplifyBuildspecFactory, new()
+    public AmplifyFactory UsesBuildSpec<TBuildSpecFactory>() where TBuildSpecFactory : IAmplifyBuildSpecFactory, new()
     {
-        Props.BuildSpec = new TBuildSpecFactory().ToBuildSpec();
+        Props.BuildSpec = new TBuildSpecFactory().ToBuildSpecYaml();
         return this;
     }
 }

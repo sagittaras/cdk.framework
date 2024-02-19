@@ -1,3 +1,4 @@
+using Amazon.CDK.AWS.CodeBuild;
 using Sagittaras.CDK.Framework.CodeBuild.BuildSpecification.Abstraction;
 
 namespace Sagittaras.CDK.Framework.CodeBuild.BuildSpecification.Factory.Sections;
@@ -17,14 +18,24 @@ public class PhasesSection : IPhasesSection
     /// </summary>
     private readonly Dictionary<BuildPhase, string> _phaseSectionName = new()
     {
-        { Abstraction.BuildPhase.Install, "install" },
-        { Abstraction.BuildPhase.PreBuild, "pre_build" },
-        { Abstraction.BuildPhase.Build, "build" },
-        { Abstraction.BuildPhase.PostBuild, "post_build" }
+        { BuildPhase.Install, "install" },
+        { BuildPhase.PreBuild, "pre_build" },
+        { BuildPhase.Build, "build" },
+        { BuildPhase.PostBuild, "post_build" }
     };
 
     /// <inheritdoc />
     public string SectionName => "phases";
+
+    /// <summary>
+    /// Rewrites the default name mapping of the section.
+    /// </summary>
+    /// <param name="phase"></param>
+    /// <param name="name"></param>
+    protected void RewriteSectionName(BuildPhase phase, string name)
+    {
+        _phaseSectionName[phase] = name;
+    }
 
     /// <inheritdoc />
     public IDictionary<string, object> ToDictionary()
@@ -39,7 +50,7 @@ public class PhasesSection : IPhasesSection
     }
 
     /// <inheritdoc />
-    public IBuildPhaseSection BuildPhase(BuildPhase phase)
+    public virtual IBuildPhaseSection Phase(BuildPhase phase)
     {
         if (_phases.TryGetValue(phase, out IBuildPhaseSection? section))
         {
