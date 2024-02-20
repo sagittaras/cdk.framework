@@ -25,6 +25,9 @@ public abstract class ActionBuilder<TAction> : CdkFactory<TAction>, IActionBuild
     {
         return Construct();
     }
+    
+    /// <inheritdoc />
+    public abstract IActionBuilder RunOrder(int order);
 
     /// <summary>
     ///     Uses an artifact with the given name.

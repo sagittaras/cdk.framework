@@ -52,6 +52,13 @@ public class CodeBuildActionBuilder : ActionBuilder<CodeBuildAction>
         return new CodeBuildAction(_props);
     }
 
+    /// <inheritdoc />
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
+
     /// <summary>
     /// Sets the CodeBuild project used for the action.
     /// </summary>

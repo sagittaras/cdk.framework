@@ -21,6 +21,13 @@ public class ManualApprovalActionBuilder : ActionBuilder<ManualApprovalAction>
         return new ManualApprovalAction(_props);
     }
 
+    /// <inheritdoc />
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
+
     public ManualApprovalActionBuilder WithInformation(string information)
     {
         _props.AdditionalInformation = information;

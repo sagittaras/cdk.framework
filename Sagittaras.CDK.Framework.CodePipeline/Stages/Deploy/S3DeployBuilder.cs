@@ -26,6 +26,13 @@ public class S3DeployBuilder : ActionBuilder<S3DeployAction>
         return new S3DeployAction(_props);
     }
 
+    /// <inheritdoc />
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
+
     /// <summary>
     /// Sets the used input artifact.
     /// </summary>

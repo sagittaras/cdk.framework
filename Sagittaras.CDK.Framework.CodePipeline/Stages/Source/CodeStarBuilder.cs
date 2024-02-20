@@ -33,6 +33,13 @@ public class CodeStarBuilder : ActionBuilder<CodeStarConnectionsSourceAction>
         return new CodeStarConnectionsSourceAction(_props);
     }
 
+    /// <inheritdoc />
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
+
     /// <summary>
     /// Configures the ARN of the code star connection used for this source.
     /// </summary>

@@ -33,6 +33,13 @@ public class EcrSourceBuilder : ActionBuilder<EcrSourceAction>
         return new EcrSourceAction(_props);
     }
 
+    /// <inheritdoc />
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
+
     /// <summary>
     ///     Reference the ECR repository used as the source by its name.
     /// </summary>

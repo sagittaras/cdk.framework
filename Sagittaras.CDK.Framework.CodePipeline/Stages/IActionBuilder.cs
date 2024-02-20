@@ -12,4 +12,11 @@ public interface IActionBuilder : ICdkFactory<IAction>
     ///     Name of the action the factory is building.
     /// </summary>
     string ActionName { get; }
+
+    /// <summary>
+    /// Sets the run order of the action in the stage.
+    /// </summary>
+    /// <param name="order"></param>
+    /// <returns></returns>
+    IActionBuilder RunOrder(int order);
 }

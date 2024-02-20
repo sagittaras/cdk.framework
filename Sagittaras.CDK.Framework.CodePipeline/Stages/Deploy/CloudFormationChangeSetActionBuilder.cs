@@ -92,4 +92,10 @@ public class CloudFormationChangeSetActionBuilder : ActionBuilder<CloudFormation
         _props.ParameterOverrides = _parameterOverrides;
         return new CloudFormationCreateReplaceChangeSetAction(_props);
     }
+
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
 }

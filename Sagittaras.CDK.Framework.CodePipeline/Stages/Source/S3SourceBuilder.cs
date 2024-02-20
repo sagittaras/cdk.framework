@@ -26,6 +26,13 @@ public class S3SourceBuilder : ActionBuilder<S3SourceAction>
         return new S3SourceAction(_props);
     }
 
+    /// <inheritdoc />
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
+
     /// <summary>
     /// Uses the bucket and the object key to define the source action.
     /// </summary>

@@ -23,6 +23,13 @@ public class CloudFormationExecuteChangeSetActionBuilder : ActionBuilder<CloudFo
         return new CloudFormationExecuteChangeSetAction(_props);
     }
 
+    /// <inheritdoc />
+    public override IActionBuilder RunOrder(int order)
+    {
+        _props.RunOrder = order;
+        return this;
+    }
+
     /// <summary>
     /// </summary>
     /// <param name="changeSetName"></param>
