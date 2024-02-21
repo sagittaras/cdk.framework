@@ -53,7 +53,7 @@ public static class FunctionRoleExtension
     /// </summary>
     /// <param name="function"></param>
     /// <param name="bucketName">Name of the bucket. If not set, all buckets are allowed.</param>
-    public static void AllowS3Access(this Function function, string? bucketName)
+    public static void AllowS3Access(this Function function, string? bucketName = null)
     {
         function.AddToRolePolicy(new PolicyStatement(new PolicyStatementProps
         {
