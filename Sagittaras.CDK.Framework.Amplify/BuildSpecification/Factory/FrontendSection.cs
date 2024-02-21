@@ -37,6 +37,11 @@ public class FrontendSection : IFrontendSection
             dict.Add(_artifacts.SectionName, _artifacts.ToDictionary());
         }
 
+        if (_cache is not null)
+        {
+            dict.Add(_cache.SectionName, _cache.ToDictionary());
+        }
+
         return dict;
     }
 }
