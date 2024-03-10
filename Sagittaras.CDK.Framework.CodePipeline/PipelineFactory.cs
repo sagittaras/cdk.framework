@@ -9,6 +9,9 @@ namespace Sagittaras.CDK.Framework.CodePipeline;
 /// <summary>
 /// Factory for creating a CodePipeline.
 /// </summary>
+/// <remarks>
+///     Default is Pipeline V1.
+/// </remarks>
 public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
 {
     /// <summary>
@@ -28,7 +31,8 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
         {
             PipelineName = Cloudspace.ResourceName(pipelineName),
             RestartExecutionOnUpdate = true,
-            ArtifactBucket = Bucket.FromBucketName(this, "artifact-bucket", artifactBucket)
+            ArtifactBucket = Bucket.FromBucketName(this, "artifact-bucket", artifactBucket),
+            PipelineType = PipelineType.V1
         };
     }
 
@@ -85,6 +89,17 @@ public class PipelineFactory : ConstructFactory<Pipeline, PipelineProps>
             .ToArray();
 
         return new Pipeline(this, "pipeline", Props);
+    }
+
+    /// <summary>
+    ///     Sets the used type of pipeline.
+    /// </summary>
+    /// <param name="pipelineType"></param>
+    /// <returns></returns>
+    public PipelineFactory SetPipelineType(PipelineType pipelineType)
+    {
+        Props.PipelineType = pipelineType;
+        return this;
     }
 
     /// <summary>
