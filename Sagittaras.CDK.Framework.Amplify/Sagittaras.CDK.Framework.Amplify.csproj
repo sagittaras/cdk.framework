@@ -11,7 +11,7 @@
         <PackageProjectUrl>https://github.com/sagittaras/cdk.framework</PackageProjectUrl>
         <PackageLicenseUrl>https://github.com/sagittaras/cdk.framework/blob/main/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/sagittaras/cdk.framework</RepositoryUrl>
-        <Version>1.0.0-preview-04</Version>
+        <Version>1.0.0-preview-05</Version>
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Amazon.CDK.AWS.Amplify.Alpha" Version="2.122.0-alpha.0" />
+      <PackageReference Include="Amazon.CDK.AWS.Amplify.Alpha" Version="2.132.0-alpha.0" />
     </ItemGroup>
 
 </Project>

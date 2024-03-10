@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.0-preview-02</Version>
+        <Version>1.0.0-preview-03</Version>
         <Title>CDK framwork for Amazon Cognito</Title>
         <Authors>Sagittaras Games</Authors>
         <Description>Framework allowing easier construction of the Cognito pools.</Description>

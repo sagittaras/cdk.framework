@@ -5,7 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.0.0-preview-03</Version>
+        <Version>1.0.0-preview-04</Version>
         <Title>Core test library for AWS CDK</Title>
         <Authors>Sagittaras Games</Authors>
         <PackageProjectUrl>https://github.com/sagittaras/cdk.framework</PackageProjectUrl>
